@@ -519,7 +519,7 @@ setupWorld()
 
 
 
-player = new Player("jai", 128, 320, universe[0].planets[1].rooms[0])
+player = new Player("player", 128, 320, universe[0].planets[1].rooms[0])
 player.planet = universe[0].planets[1]
 
 universe[0].planets[1].rooms[2].enemies.push(new Enemy("miner", 2*64, 4*64, 64, 64, universe[0].planets[1].rooms[2], 1, 4))

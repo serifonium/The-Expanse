@@ -759,17 +759,17 @@ function setupRender() {
 
     if(player.personalOptions.hitboxesHighlighted === true) {
         for (let i of currentHitboxes) {
-            drawRECT(i.x+cx, i.y+cy, 4, i.h, "#0066ff", "UI")
-            drawRECT(i.x+cx, i.y+cy, i.w, 4, "#0066ff", "UI")
-            drawRECT(i.x+cx, i.y+i.h-4+cy, i.w, 4, "#0066ff", "UI")
-            drawRECT(i.x+i.w-4+cx, i.y+cy, 4, i.h, "#0066ff", "UI")
+            drawRECT(i.x+cx, i.y+cy, 4, i.h, "#0066ff", "game")
+            drawRECT(i.x+cx, i.y+cy, i.w, 4, "#0066ff", "game")
+            drawRECT(i.x+cx, i.y+i.h-4+cy, i.w, 4, "#0066ff", "game")
+            drawRECT(i.x+i.w-4+cx, i.y+cy, 4, i.h, "#0066ff", "game")
         }
     }
     if(player.personalOptions.highlightInteract === true) {
-        drawRECT(player.interactTile.pos.x*64+cx, player.interactTile.pos.y*64+cy, 4, 64, "#990000", "interactionTile", "UI")
-        drawRECT(player.interactTile.pos.x*64+cx, player.interactTile.pos.y*64+cy, 64, 4, "#990000", "interactionTile1", "UI")
-        drawRECT(player.interactTile.pos.x*64+cx, player.interactTile.pos.y*64+60+cy, 64, 4, "#990000", "interactionTile2", "UI")
-        drawRECT(player.interactTile.pos.x*64+60+cx, player.interactTile.pos.y*64+cy, 4, 64, "#990000", "interactionTile3", "UI")  
+        drawRECT(player.interactTile.pos.x*64+cx, player.interactTile.pos.y*64+cy, 4, 64, "#990000", "interactionTile", "game")
+        drawRECT(player.interactTile.pos.x*64+cx, player.interactTile.pos.y*64+cy, 64, 4, "#990000", "interactionTile1", "game")
+        drawRECT(player.interactTile.pos.x*64+cx, player.interactTile.pos.y*64+60+cy, 64, 4, "#990000", "interactionTile2", "game")
+        drawRECT(player.interactTile.pos.x*64+60+cx, player.interactTile.pos.y*64+cy, 4, 64, "#990000", "interactionTile3", "game")  
     }
     
     for(let i = 0; i < 5; i++) {
@@ -798,6 +798,26 @@ function render() {
     move(player.interactTile.pos.x*64, player.interactTile.pos.y*64, "interactionTile1")
     move(player.interactTile.pos.x*64, player.interactTile.pos.y*64+60, "interactionTile2")
     move(player.interactTile.pos.x*64+60, player.interactTile.pos.y*64, "interactionTile3")
+    
+    
+    if(player.x < CLIENT_WIDTH / 2) {
+        document.getElementById("game").style.left = 0 + "px"
+    } else if(player.x > (player.map.width * 64) - (CLIENT_WIDTH / 2)) {
+        document.getElementById("game").style.left = -((player.map.width * 64) - CLIENT_WIDTH) + "px"
+    } else {
+        document.getElementById("game").style.left = -(player.x - (CLIENT_WIDTH / 2)) + "px"
+    }
+    
+    if(player.y < CLIENT_HEIGHT / 2) {
+        document.getElementById("game").style.top = "0px"
+    } else if(player.y > (player.map.height * 64) - (CLIENT_HEIGHT / 2)) {
+        document.getElementById("game").style.top = -((player.map.height * 64) - CLIENT_HEIGHT) + "px"
+    } else {
+        document.getElementById("game").style.top = -(player.y - (CLIENT_HEIGHT / 2)) + "px"
+    }
+    
+    document.getElementById("body").scrollTop = 20
+    
 }
 
 function hotbarRender() {

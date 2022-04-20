@@ -69,6 +69,12 @@
 
 
     <script>
+        document.getElementById("game").style.height = CLIENT_HEIGHT+"px";
+        document.getElementById("game").style.width = CLIENT_WIDTH+"px";
+        document.getElementById("UI").style.height = CLIENT_HEIGHT+"px";
+        document.getElementById("UI").style.width = CLIENT_WIDTH+"px";
+        document.getElementById("body").style.height = CLIENT_HEIGHT+"px";
+        document.getElementById("body").style.width = CLIENT_WIDTH+"px";
         
         
         setupRender()
@@ -95,7 +101,7 @@
         newEffect("Coffee Shot", 90)
         newEffect("Frostburn Affliction", 90)
         
-        //drawTEXT(100, 100, CLIENT_HEIGHT + ", "  + CLIENT_WIDTH, "p")
+        drawTEXT(100, 100, CLIENT_HEIGHT + ", "  + CLIENT_WIDTH, "p", "text", "body")
     </script>
 
 

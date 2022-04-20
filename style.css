@@ -9,6 +9,17 @@ body {
 #hover {
   position: absolute;
 }
+#game {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  
+}
+#UI {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
 
 .absolute {
   height: 500px;

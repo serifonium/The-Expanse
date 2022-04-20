@@ -1,20 +1,3 @@
-class List {
-    constructor() {
-        this.values = []
-    }
-    search(x) {
-        for (let i of this.values) {
-            if (x === i) {
-                return i
-            }
-            return null
-        }
-    }
-    add(x) {
-        this.values.push(x)
-    }
-
-}
 class Tile {
     constructor(x, y) {
         this.type = "space"
@@ -220,11 +203,6 @@ class Player {
                 foragingObtained: false
             }
         }
-        this.textures = {
-            head: undefined,
-            body: undefined,
-            legs: undefined
-        }
 
         this.equippedSpaceship = new Spaceship("Lightwing", 4, 0)
 
@@ -246,7 +224,7 @@ class Player {
 
 
 
-        this.PING = 20
+
     } 
     update() {
         this.tx = Math.floor((this.x + 32)/64)
