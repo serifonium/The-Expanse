@@ -20,7 +20,7 @@
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
 
-        var map = new Map(65, 50, "map")
+        var map = new Map(23, 13, "map")
         for(let x in map.grid) {
             for(let y in map.grid[x]) {
                 map.grid[x][y].type = "void"

@@ -12,36 +12,41 @@
     
 </head>
 <body id="body">
+    
     <!--
     <canvas id="myCanvas" width="1280" height="640" style="border:1px solid #000000;"></canvas>
     
     -->
-    <img src="images/floor1.png" hidden id="floor1">
-    <img src="images/floor2.png" hidden id="floor2">
-    <img src="images/shipComputer.png" hidden id="shipComputer">
-    <img src="images/slot1.png" hidden id="slot1">
-    <img src="images/slot2.png" hidden id="slot2">
-    <img src="images/items/nuclearFuel.png" hidden id="nuclearFuel">
-    <img src="images/borealTree1.png" hidden id="borealTree1">
-    <img src="images/borealTreeStump.png" hidden id="borealTreeStump">
-    <img src="images/ice1.png" hidden id="ice1">
-    <img src="images/items/fracturedAxe.png" hidden id="fracturedAxe">
-    <img src="images/snow.png" id="snow">
-    <img src="images/interfaceTab.png" hidden id="interfaceTab">
-    <img src="images/inventorySymbol.png" hidden id="inventorySymbol">
-    <img src="images/mapSymbol.png" hidden id="mapSymbol">
-    <img src="images/skillsSymbol.png" hidden id="skillsSymbol">
-    <img src="images/friendshipSymbol.png" hidden id="friendshipSymbol">
-    <img src="images/ironTree.png" hidden id="ironTree">
-    <img src="images/items/wood.png" hidden id="wood">
-    <img src="images/items/Basic Fishing Pole.png" hidden id="basicFishingPole">
-    <img src="images/items/seaweed.png" hidden id="seaweed">
-    <img src="images/water1.png" hidden id="water1">
-    <img src="images/items/frostMinnow.png" hidden id="frostMinnow">
-    <img src="images/items/ironOre.png" hidden id="ironOre">
-    <img src="images/furnace.png" hidden id="furnace">
+    <div id="game">
+        <img src="images/floor1.png" hidden id="floor1">
+        <img src="images/floor2.png" hidden id="floor2">
+        <img src="images/shipComputer.png" hidden id="shipComputer">
+        <img src="images/slot1.png" hidden id="slot1">
+        <img src="images/slot2.png" hidden id="slot2">
+        <img src="images/items/nuclearFuel.png" hidden id="nuclearFuel">
+        <img src="images/borealTree1.png" hidden id="borealTree1">
+        <img src="images/borealTreeStump.png" hidden id="borealTreeStump">
+        <img src="images/ice1.png" hidden id="ice1">
+        <img src="images/items/fracturedAxe.png" hidden id="fracturedAxe">
+        <img src="images/snow.png" id="snow">
+        <img src="images/interfaceTab.png" hidden id="interfaceTab">
+        <img src="images/inventorySymbol.png" hidden id="inventorySymbol">
+        <img src="images/mapSymbol.png" hidden id="mapSymbol">
+        <img src="images/skillsSymbol.png" hidden id="skillsSymbol">
+        <img src="images/friendshipSymbol.png" hidden id="friendshipSymbol">
+        <img src="images/ironTree.png" hidden id="ironTree">
+        <img src="images/items/wood.png" hidden id="wood">
+        <img src="images/items/Basic Fishing Pole.png" hidden id="basicFishingPole">
+        <img src="images/items/seaweed.png" hidden id="seaweed">
+        <img src="images/water1.png" hidden id="water1">
+        <img src="images/items/frostMinnow.png" hidden id="frostMinnow">
+        <img src="images/items/ironOre.png" hidden id="ironOre">
+        <img src="images/furnace.png" hidden id="furnace">
 
-    
+    </div>
+    <div id="UI">
+
+    </div>
 
     <script>
         const CLIENT_HEIGHT = window.innerHeight
@@ -50,9 +55,6 @@
         const CLIENT_Y_OFFSET = 0
     </script>
 
-    <!--
-    <script src="js/images.js"></script>
-    -->
     <script src="js/types.js"></script>
     <script src="js/utils.js"></script>
     
@@ -61,9 +63,7 @@
     <script src="js/main.js"></script>
     <script src="js/controls.js"></script>
 
-
-    <script src="./engine/main.js"></script>
-    <script src="./engine/update.js"></script>
+    <script src="js/update.js"></script>
 
 
 
@@ -78,11 +78,11 @@
         function newEffect(name, duration) {
             if(document.getElementById(name) === null) {
                 if(name === "Coffee Shot") {
-                    drawIMG("./images/coffeeShotEffect.png", player.effects.length * 64+320, CLIENT_HEIGHT - 64, name)
+                    drawIMG("./images/coffeeShotEffect.png", player.effects.length * 64+320, CLIENT_HEIGHT - 64, name, "UI")
                 } if(name === "Frostburn Affliction") {
-                    drawIMG("./images/frostburnEffect.png", player.effects.length * 64+320, CLIENT_HEIGHT - 64, name)
+                    drawIMG("./images/frostburnEffect.png", player.effects.length * 64+320, CLIENT_HEIGHT - 64, name, "UI")
                 } if(name === "Rage") {
-                    drawIMG("./images/rageEffect.png", player.effects.length * 64+320, CLIENT_HEIGHT - 64, name)
+                    drawIMG("./images/rageEffect.png", player.effects.length * 64+320, CLIENT_HEIGHT - 64, name, "UI")
                 }
                 player.effects.push({name: name, duration: duration})
             }
@@ -94,7 +94,7 @@
         newEffect("Coffee Shot", 90)
         newEffect("Frostburn Affliction", 90)
         
-        drawTEXT(100, 100, CLIENT_HEIGHT + ", "  + CLIENT_WIDTH, "p")
+        //drawTEXT(100, 100, CLIENT_HEIGHT + ", "  + CLIENT_WIDTH, "p")
     </script>
 
 

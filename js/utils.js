@@ -368,7 +368,7 @@ function mapUnString(string) {
 
 
 
-function drawIMG(img, x, y, id) {
+function drawIMG(img, x, y, id, place) {
     let image = document.createElement("img");
     image.src = img;
     if(id !== undefined) {
@@ -376,24 +376,24 @@ function drawIMG(img, x, y, id) {
     }
     image.draggable = false
     image.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px;"
-    let body = document.getElementById("body");
+    let body = document.getElementById(place);
     body.appendChild(image);
-} function drawRECT(x, y, w, h, colour, id) {
+} function drawRECT(x, y, w, h, colour, id, place) {
     let box = document.createElement("div");
     if(id !== undefined) {
         box.id = id
     }
     box.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px; height: "+String(h)+"px; width: "+String(w)+"px; margin-bottom: 15px; background-color:" + colour
-    let body = document.getElementById("body");
+    let body = document.getElementById(place);
     body.appendChild(box);
-} function drawTEXT(x, y, text, type, id) {
+} function drawTEXT(x, y, text, type, id, place) {
     let textbox = document.createElement(type);
     if(id !== undefined) {
         textbox.id = id
     }
     textbox.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px;"
     let node = document.createTextNode(text);
-    let body = document.getElementById("body");
+    let body = document.getElementById(place);
     textbox.appendChild(node);
     
     body.appendChild(textbox);

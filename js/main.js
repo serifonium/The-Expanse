@@ -49,7 +49,7 @@ ctx.textAlign = "center"
 
 
 function setupWorld() {
-    universe[0].planets[1].rooms.push(new Map(23, 13, "Landing"))
+    
     maps = [new Map(20, 10, "Cockpit")]
     for(let y = 2; y < 8; y++) {
         for(let x = 6; x < 13; x++) {
@@ -151,6 +151,8 @@ function setupWorld() {
     maps[1].hitboxes.push(maps[1].grid[12][2].hitbox)
     maps[1].grid[12][2].hitbox.interface = new Interface("furnace")
 
+    /*
+
     for(let y = 0; y < 13; y++) {
         for(let x = 0; x < 23; x++) {
             universe[0].planets[1].rooms[0].grid[x][y].type = "ice"
@@ -167,7 +169,7 @@ function setupWorld() {
         for(let x = 2; x < 3; x++) {
             universe[0].planets[1].rooms[0].grid[x][y].type = "snow"
         }
-    }
+    } */
     function borealTreePlant(x, y, map) {
         map.grid[x][y].decor = "borealTree1"
         map.grid[x][y].tags.collisionDetection = true
@@ -186,6 +188,8 @@ function setupWorld() {
         map.grid[x][y].offsetcounter = 0
         map.grid[x][y].hits = 16
     }
+    /*
+
     borealTreePlant(5, 7, universe[0].planets[1].rooms[0])
     borealTreePlant(15, 6, universe[0].planets[1].rooms[0])
     borealTreePlant(2, 3, universe[0].planets[1].rooms[0])
@@ -197,17 +201,20 @@ function setupWorld() {
     borealTreePlant(4, 7, universe[0].planets[1].rooms[0])
     borealTreePlant(17, 8, universe[0].planets[1].rooms[0])
     universe[0].planets[1].rooms[0].grid[20][12].type = "snow"
-    
+    */
+
+    universe[0].planets[1].rooms.push(mapUnString("2313ccccccdddddddccbbbbbddddddcbbbbbbbdddddccbbbbbbdddddcbbbbbbbbddddcbbbbbbbbbdddcbbbbbbbbbdddcbbbbbbbbbbddcbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbcccbbbbbbbbbbbccbbbbbbbbbbcccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaabaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"))
+    universe[0].planets[1].rooms[0].grid[3][7].decor = "d"
     //tpHitbox(20, 12, 1, 1, universe[0].planets[1].rooms[0], "Hz-892 Landing", "IceCliffside1")
 
     for(let y = 0; y < 13; y++) {
         for(let x = 0; x < 23; x++) {
-            if(universe[0].planets[1].rooms[0].grid[x][y].type === "ice") {
+            if(universe[0].planets[1].rooms[0].grid[x][y].type === "ice" || universe[0].planets[1].rooms[0].grid[x][y].type === "water1") {
                 universe[0].planets[1].rooms[0].grid[x][y].tags.collisionDetection = true
-                
-            }
+            } 
             if(universe[0].planets[1].rooms[0].grid[x][y].decor === "borealTree1") {
-                
+                universe[0].planets[1].rooms[0].grid[x][y].tags.collisionDetection = true
+                universe[0].planets[1].rooms[0].grid[x][y].hits = 8
             }
         }
     }
@@ -626,7 +633,9 @@ function hitboxFind(x, y) {
 
 
 
-
+setInterval(() => {
+    update()
+}, 20);
 
 
 

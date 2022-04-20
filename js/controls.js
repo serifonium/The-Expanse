@@ -3,23 +3,23 @@ document.addEventListener('keydown', logKey);
         function logKey(e) {
             if(e.key === "w") {
                 if(player.canMove) {
-                    change("changePlayerVelocity", {x: undefined, y: -player.speed}, player)
-                    change("changePlayerRot", {rotation: 0}, player)
+                    player.vy = -player.speed
+                    player.rotation = 0
                 }
             } if(e.key === "a") {
                 if(player.canMove) {
-                    change("changePlayerVelocity", {x: -player.speed, y: undefined}, player)
-                    change("changePlayerRot", {rotation: 1}, player)
+                    player.vx = -player.speed
+                    player.rotation = 1
                 }
             } if(e.key === "s") {
                 if(player.canMove) {
-                    change("changePlayerVelocity", {x: undefined, y: player.speed}, player)
-                    change("changePlayerRot", {rotation: 2}, player)
+                    player.vy = player.speed
+                    player.rotation = 2
                 }
             } if(e.key === "d") {
                 if(player.canMove) {
-                    change("changePlayerVelocity", {x: player.speed, y: undefined}, player)
-                    change("changePlayerRot", {rotation: 3}, player)
+                    player.vx = player.speed
+                    player.rotation = 3
                 }
             } if(e.key === " ") {
                 
@@ -106,13 +106,13 @@ document.addEventListener('keydown', logKey);
         }
         function logDown(e) {
             if(e.key === "w") {
-                change("changePlayerVelocity", {x: undefined, y: 0}, player)
+                player.vy = 0
             } if(e.key === "a") {
-                change("changePlayerVelocity", {x: 0, y: undefined}, player)
+                player.vx = 0
             } if(e.key === "s") {
-                change("changePlayerVelocity", {x: undefined, y: 0}, player)
+                player.vy = 0
             } if(e.key === "d") {
-                change("changePlayerVelocity", {x: 0, y: undefined}, player)
+                player.vx = 0
             } if(e.key === "") {
 
             }
