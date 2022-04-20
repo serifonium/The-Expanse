@@ -5,7 +5,7 @@ on github for friends
 
 code confusing and difficult to understand (beginner)
 
-demo-
+demo-https://serifonium.github.io/untitled-game/
 
 CONTROLS:
 
