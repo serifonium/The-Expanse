@@ -72,14 +72,8 @@
         setupRender()
 
         
-        
 
-        function hotbarRender() {
-            document.getElementById("selectedHotbarSlot").style.left = player.itemSelected*64 + "px"
-        }
-        function effectRender() {
-            
-        }
+        
         function newEffect(name, duration) {
             if(document.getElementById(name) === null) {
                 if(name === "Coffee Shot") {
@@ -97,7 +91,6 @@
         
 
         newEffect("Coffee Shot", 90)
-        newEffect("Rage", 90)
         newEffect("Frostburn Affliction", 90)
         
         drawTEXT(100, 100, CLIENT_HEIGHT + ", "  + CLIENT_WIDTH, "p")
