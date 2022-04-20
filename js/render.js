@@ -745,7 +745,7 @@ function setupRender() {
         let playerBox = document.createElement("div");
         playerBox.style = "position:absolute; left:" + player.x + "px; top:" + player.y + "px; height: " + 64 + "px; width: " + 64 + "px; margin-bottom: 15px; background-color: #999999"
         playerBox.id = "playerBox"
-        let body = document.getElementById("body");
+        let body = document.getElementById("game");
         body.appendChild(playerBox);
     }
     
