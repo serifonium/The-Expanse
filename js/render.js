@@ -799,3 +799,8 @@ function render() {
     move(player.interactTile.pos.x*64, player.interactTile.pos.y*64+60, "interactionTile2")
     move(player.interactTile.pos.x*64+60, player.interactTile.pos.y*64, "interactionTile3")
 }
+
+function hotbarRender() {
+    document.getElementById("selectedHotbarSlot").style.left = player.itemSelected*64 + "px"
+}
+
