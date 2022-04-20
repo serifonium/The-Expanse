@@ -1,0 +1,125 @@
+
+    
+    
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gaminjg</title>
+    
+</head>
+<body id="body">
+    <!--
+    <canvas id="myCanvas" width="1280" height="640" style="border:1px solid #000000;"></canvas>
+    -->
+    <img src="images/floor1.png" hidden id="floor1">
+    <img src="images/floor2.png" hidden id="floor2">
+    <img src="images/shipComputer.png" hidden id="shipComputer">
+    <img src="images/slot1.png" hidden id="slot1">
+    <img src="images/slot2.png" hidden id="slot2">
+    <img src="images/items/nuclearFuel.png" hidden id="nuclearFuel">
+    <img src="images/borealTree1.png" hidden id="borealTree1">
+    <img src="images/borealTreeStump.png" hidden id="borealTreeStump">
+    <img src="images/ice1.png" hidden id="ice1">
+    <img src="images/items/fracturedAxe.png" hidden id="fracturedAxe">
+    <img src="images/snow.png" id="snow">
+    <img src="images/interfaceTab.png" hidden id="interfaceTab">
+    <img src="images/inventorySymbol.png" hidden id="inventorySymbol">
+    <img src="images/mapSymbol.png" hidden id="mapSymbol">
+    <img src="images/skillsSymbol.png" hidden id="skillsSymbol">
+    <img src="images/friendshipSymbol.png" hidden id="friendshipSymbol">
+    <img src="images/ironTree.png" hidden id="ironTree">
+    <img src="images/items/wood.png" hidden id="wood">
+    <img src="images/items/Basic Fishing Pole.png" hidden id="basicFishingPole">
+    <img src="images/items/seaweed.png" hidden id="seaweed">
+    <img src="images/water1.png" hidden id="water1">
+    <img src="images/items/frostMinnow.png" hidden id="frostMinnow">
+    <img src="images/items/ironOre.png" hidden id="ironOre">
+    <img src="images/furnace.png" hidden id="furnace">
+
+    
+
+    <script>
+        const CLIENT_HEIGHT = window.innerHeight
+        const CLIENT_WIDTH = window.innerWidth
+        const CLIENT_X_OFFSET = 0
+        const CLIENT_Y_OFFSET = 0
+    </script>
+
+    <!--
+    <script src="js/images.js"></script>
+    -->
+    <script src="js/types.js"></script>
+    <script src="js/utils.js"></script>
+    
+    <script src="js/render.js"></script>
+    <script src="js/save.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/controls.js"></script>
+
+
+    <script src="./engine/main.js"></script>
+    <script src="./engine/update.js"></script>
+
+
+
+    <script>
+        
+        
+        setupRender()
+
+        
+        
+
+        function hotbarRender() {
+            document.getElementById("selectedHotbarSlot").style.left = player.itemSelected*64 + "px"
+        }
+        function effectRender() {
+            
+        }
+        function newEffect(name, duration) {
+            if(document.getElementById(name) === null) {
+                if(name === "Coffee Shot") {
+                    drawIMG("./images/coffeeShotEffect.png", player.effects.length * 64+320, CLIENT_HEIGHT - 64, name)
+                } if(name === "Frostburn Affliction") {
+                    drawIMG("./images/frostburnEffect.png", player.effects.length * 64+320, CLIENT_HEIGHT - 64, name)
+                } if(name === "Rage") {
+                    drawIMG("./images/rageEffect.png", player.effects.length * 64+320, CLIENT_HEIGHT - 64, name)
+                }
+                player.effects.push({name: name, duration: duration})
+            }
+        } function deleteEffect(name) {
+            
+        }
+        
+
+        newEffect("Coffee Shot", 90)
+        newEffect("Rage", 90)
+        newEffect("Frostburn Affliction", 90)
+        
+        drawTEXT(100, 100, CLIENT_HEIGHT + ", "  + CLIENT_WIDTH, "p")
+    </script>
+
+
+
+
+    <div id="hover">
+
+    </div>
+    <script>
+        /*
+        {
+            let box = document.createElement("div");
+            box.id = "e"
+            box.style = "position:absolute; left:" + String(0) + "px; top:" + String(0) + "px; height: "+String(100)+"px; width: "+String(100)+"px; margin-bottom: 15px; background-color: #999999"
+            let body = document.getElementById("hover");
+            body.appendChild(box);
+        }
+        */
+    </script>
+</body>
+</html>
+
