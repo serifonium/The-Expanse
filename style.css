@@ -20,6 +20,23 @@ body {
   top: 0px;
   left: 0px;
 }
+#loadingBackground {
+  height: 200px;
+  width: 200px;
+  margin-bottom: 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: "#4287f5";
+}
+#loading {
+  height: 200px;
+  width: 200px;
+  margin-bottom: 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 
 .absolute {
   height: 500px;

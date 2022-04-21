@@ -14,6 +14,7 @@
 </head>
 <body id="body">
     
+    
     <!--
     <canvas id="myCanvas" width="1280" height="640" style="border:1px solid #000000;"></canvas>
     
@@ -48,16 +49,27 @@
     <div id="UI">
 
     </div>
+    <div id="loading">
+    </div>
 
+    <script src="js/utils.js"></script>
+    <script src="databases/itemDatabase.js"></script>
+    <script src="databases/loadingText.js"></script>
     <script>
         const CLIENT_HEIGHT = window.innerHeight
         const CLIENT_WIDTH = window.innerWidth
         const CLIENT_X_OFFSET = 0
         const CLIENT_Y_OFFSET = 0
+        document.getElementById("loading").style.width = window.innerWidth+"px"
+        document.getElementById("loading").style.height = window.innerHeight+"px"
+        drawRECT(0, 0, window.innerWidth, window.innerHeight, "#4287f5", "loadingBackground", "loading")
+        drawTEXT(window.innerWidth/2,window.innerHeight/2, loadingText[Math.round(Math.random()*loadingText.length)-1], "p", "loadingText", "loading")
+        //document.getElementById("loading").style
+
     </script>
 
     <script src="js/types.js"></script>
-    <script src="js/utils.js"></script>
+    
     
     <script src="js/render.js"></script>
     <script src="js/save.js"></script>
@@ -111,16 +123,11 @@
 
     </div>
     <script>
-        /*
-        {
-            let box = document.createElement("div");
-            box.id = "e"
-            box.style = "position:absolute; left:" + String(0) + "px; top:" + String(0) + "px; height: "+String(100)+"px; width: "+String(100)+"px; margin-bottom: 15px; background-color: #999999"
-            let body = document.getElementById("hover");
-            body.appendChild(box);
-        }
-        */
+        document.getElementById("loading").remove()
     </script>
+    <div onLoad="removeLoadingScreen()">
+
+    </div>
 </body>
 </html>
 
