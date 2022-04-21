@@ -23,7 +23,7 @@ space - interact with tile
 
 
 ## Recent Changelog vA.0.0.3:
-added rough loading screen
+added rough loading screen (temporarily removed)
 
 added non-funtional inventory framework
 
