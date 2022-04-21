@@ -51,40 +51,17 @@ document.addEventListener('keydown', logKey);
                 
             } if(e.key === "Escape") { 
                 if(player.interfaceOpen !== undefined) {
-                    if(player.interfaceOpen.name === "shipNavigation") {
-                        player.interfaceOpen.planetSelected = undefined
+                    if(player.interfaceOpen === player.inventory) {
                         player.interfaceOpen = undefined
-                    } else if(player.interfaceOpen.name === "inventory") {
-                        player.interfaceOpen.tab = 0
-                        player.interfaceOpen.itemSelected = undefined
-                        player.interfaceOpen = undefined
-                    } else if(player.interfaceOpen.name === "Fishing") {
-                        player.interfaceOpen.clicktime = 0
-                        player.interfaceOpen.click = false
-                        player.interfaceOpen.catchtime = 0
-                        player.interfaceOpen.catch = undefined
-                        player.interfaceOpen.clicked = false
-                        player.interfaceOpen = undefined
-                    } else if(player.interfaceOpen.name === "Fishing") {
-                        player.interfaceOpen.clicktime = 0
-                        player.interfaceOpen.click = false
-                        player.interfaceOpen.catchtime = 0
-                        player.interfaceOpen.catch = undefined
-                        player.interfaceOpen.clicked = false
-                        player.interfaceOpen = undefined
-                    } else if(player.interfaceOpen.name === "textbox") {
-                        if(player.interfaceOpen.finished !== undefined) {
-                            if(player.interfaceOpen.finished === true) {
-                                player.interfaceOpen = undefined
-                            }
-                        }
-                    } else {
-                        player.interfaceOpen = undefined
+                        document.getElementById("darkBackground").hidden = true
+                        document.getElementById("inventory").hidden = true
                     }
                     
                     
                 } else {
                     player.interfaceOpen = player.inventory
+                    document.getElementById("darkBackground").hidden = false
+                    document.getElementById("inventory").hidden = false
                 }
             } if(e.key === "1") {
                 if(player.interfaceOpen === undefined) {

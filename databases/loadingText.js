@@ -1,7 +1,20 @@
 var loadingText = [
-    "hello",
-    "Welcome to Game",
+    "Hello",
+    "welcome to game",
     "why",
     "no",
-    "don't look behind you"
+    "don't look behind you",
+    "you are bad (it was joke please)",
+    "frontite",
+    "shut",
+    "stop talking",
+    "you are insane",
+    "tip: you can't die",
+    "why is my bus 10 minutes late",
+    "amongtite",
+    "when I was 10 my goofy ahh uncle",
+    "stop",
+    "Hell",
+    "Who is Wyoming?",
+    "☃"
 ]

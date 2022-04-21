@@ -6,6 +6,6 @@ function saveGame() {
 } function loadGame() {
     //player.x = Number(localStorage.getItem("playerX"))
     //player.y = Number(localStorage.getItem("playerY"))
-    player.name = localStorage.getItem("playerName")
+    //player.name = localStorage.getItem("playerName")
     //player.inventory.items = localStorage.getItem("playerItems")
 }
