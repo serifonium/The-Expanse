@@ -13,6 +13,13 @@ CONTROLS:
 
 wasd - move
 
-esc - access menu
+esc - access menu (in progress)
 
-space - interact with tile
+space - interact with tile (in progress)
+
+
+
+
+Recent Changelog vA.0.1:
+
+changed map
