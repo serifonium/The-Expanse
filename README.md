@@ -1,4 +1,4 @@
-# untitled-game (by me)
+# untitled-game
 casual 2d rpg game demo
 
 on github for friends
