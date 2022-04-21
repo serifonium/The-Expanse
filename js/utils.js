@@ -397,4 +397,11 @@ function drawIMG(img, x, y, id, place) {
     textbox.appendChild(node);
     
     body.appendChild(textbox);
+} function playSFX(sfx) {
+    let audio = new Audio(sfx);
+    audio.play();
+    console.log("played")
+}
+function findTileId(x, y, add) {
+    return document.getElementById(String(Number(x)+(Number(y)*player.map.width))+add)
 }

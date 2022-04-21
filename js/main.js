@@ -215,6 +215,7 @@ function setupWorld() {
             if(universe[0].planets[1].rooms[0].grid[x][y].decor === "borealTree1") {
                 universe[0].planets[1].rooms[0].grid[x][y].tags.collisionDetection = true
                 universe[0].planets[1].rooms[0].grid[x][y].hits = 8
+                universe[0].planets[1].rooms[0].grid[x][y].cooldown = 0
             }
         }
     }
@@ -421,7 +422,6 @@ function setupWorld() {
             if(universe[0].planets[1].rooms[3].grid[x][y].decor === "lumberShack") {
                 for(let y1 = y+0; y1 < y+3; y1++) {
                     for(let x1 = x; x1 < x+5; x1++) {
-                        console.log(x1, y1)
                         universe[0].planets[1].rooms[3].grid[x1][y1].tags.collisionDetection = true
                     }
                 }
@@ -519,11 +519,14 @@ setupWorld()
 
 
 
-player = new Player("player", 128, 320, universe[0].planets[1].rooms[0])
-player.planet = universe[0].planets[1]
+    player = new Player("player", 128, 320, universe[0].planets[1].rooms[0])
+    player.planet = universe[0].planets[1]
+
+loadGame()
 
 universe[0].planets[1].rooms[2].enemies.push(new Enemy("miner", 2*64, 4*64, 64, 64, universe[0].planets[1].rooms[2], 1, 4))
 universe[0].planets[1].rooms[2].hitboxes.push(universe[0].planets[1].rooms[2].enemies[0].hitbox)
+
 
 //universe[0].planets[1].rooms[1].enemies.push(new Enemy("miner", 800, 550, 64, 64, universe[0].planets[1].rooms[1], 2, 4))
 //universe[0].planets[1].rooms[1].hitboxes.push(universe[0].planets[1].rooms[1].enemies[1].hitbox)
@@ -547,7 +550,7 @@ let sp = spaceWarpSetup()
 
 setInterval(() => {
     saveGame()
-}, 2*1000);
+}, 0.02*1000);
 
 
 

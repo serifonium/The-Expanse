@@ -8,9 +8,29 @@ function update() {
     for (let x in player.map.grid) {
         for (let y in player.map.grid[x]) {
             player.map.grid[x][y].update()
-            if(player.map.grid[x][y].decor === "borealTree1" || player.map.grid[x][y].decor === "borealTreeStump" || player.map.grid[x][y].decor === "ironTree") {
-                if(player.map.grid[x][y].offsetcounter !== 0) {
-                    player.map.grid[x][y].offsetcounter -= 1
+            if(player.map.grid[x][y].decor === "borealTree1") {
+                if(player.map.grid[x][y].cooldown > 0) {
+                    if(player.map.grid[x][y].cooldown === 4) {
+                        let off = Number(findTileId(x, y, " borealTree1").style.left.replace('px',''))
+                        findTileId(x, y, " borealTree1").style.left = String(off - 2) + "px"
+                        player.map.grid[x][y].cooldown += -1
+                        console.log(off)
+                    }
+                    else if(player.map.grid[x][y].cooldown === 3) {
+                        let off = Number(findTileId(x, y, " borealTree1").style.left.replace('px',''))
+                        findTileId(x, y, " borealTree1").style.left = String(off + 2) + "px"
+                        player.map.grid[x][y].cooldown += -1
+                    }
+                    else if(player.map.grid[x][y].cooldown === 2) {
+                        let off = Number(findTileId(x, y, " borealTree1").style.left.replace('px',''))
+                        findTileId(x, y, " borealTree1").style.left = String(off + 2) + "px"
+                        player.map.grid[x][y].cooldown += -1
+                    } 
+                    else if(player.map.grid[x][y].cooldown === 1) {
+                        let off = Number(findTileId(x, y, " borealTree1").style.left.replace('px',''))
+                        findTileId(x, y, " borealTree1").style.left = String(off - 2) + "px"
+                        player.map.grid[x][y].cooldown += -1
+                    }
                 }
             }
         }

@@ -713,29 +713,31 @@ function setupRender() {
     for(let x in player.map.grid) {
         for(let y in player.map.grid[x]) {
             let tile = player.map.grid[x][y]
+            //console.log(String(x+(y*player.map.width)), Number(x), Number(y))
             if(tile.type === "snow") {
-                drawIMG("images/snow.png", x*64, y*64, String(x+(y*player.map.width)), "game")
+                drawIMG("images/snow.png", x*64, y*64, String(Number(x)+(Number(y)*player.map.width)), "game")
+                
             } if(tile.type === "ice") {
-                drawIMG("images/ice1.png", x*64, y*64, String(x+(y*player.map.width)), "game")
+                drawIMG("images/ice1.png", x*64, y*64, String(Number(x)+(Number(y)*player.map.width)), "game")
                 if(tile.left !== undefined) {
                     if(tile.left.type !== "ice") {
-                        drawRECT(x*64, y*64, 4, 64, "#f0f0f0", String(x+(y*player.map.width))+" left", "game")
+                        drawRECT(x*64, y*64, 4, 64, "#f0f0f0", String(Number(x)+(Number(y)*player.map.width))+" left", "game")
                     }
                 } if(tile.down !== undefined) {
                     if(tile.down.type !== "ice") {
-                        drawRECT(x*64, y*64+60, 64, 4, "#f0f0f0", String(x+(y*player.map.width))+" down", "game")
+                        drawRECT(x*64, y*64+60, 64, 4, "#f0f0f0", String(Number(x)+(Number(y)*player.map.width))+" down", "game")
                     }
                 } if(tile.right !== undefined) {
                     if(tile.right.type !== "ice") {
-                        drawRECT(x*64+60, y*64, 4, 64, "#f0f0f0", String(x+(y*player.map.width))+" right", "game")
+                        drawRECT(x*64+60, y*64, 4, 64, "#f0f0f0", String(Number(x)+(Number(y)*player.map.width))+" right", "game")
                     }
                 } if(tile.up !== undefined) {
                     if(tile.up.type !== "ice") {
-                        drawRECT(x*64, y*64, 64, 4, "#f0f0f0", String(x+(y*player.map.width))+" up", "game")
+                        drawRECT(x*64, y*64, 64, 4, "#f0f0f0", String(Number(x)+(Number(y)*player.map.width))+" up", "game")
                     }
                 }
             } if(tile.type === "water1") {
-                drawIMG("images/water1.png", x*64, y*64, String(x+(y*player.map.width)), "game")
+                drawIMG("images/water1.png", x*64, y*64, String(Number(x)+(Number(y)*player.map.width)), "game")
             } 
         }
     }
@@ -752,7 +754,7 @@ function setupRender() {
     for(let x in player.map.grid) {
         for(let y in player.map.grid[x]) {
             if(player.map.grid[x][y].decor === "borealTree1") {
-                drawIMG("images/borealTree1.png", x*64-32, y*64-288, String(x+(y*player.map.width))+" borealTree1", "game")
+                drawIMG("images/borealTree1.png", x*64-32, y*64-288, String(Number(x)+(Number(y)*player.map.width))+" borealTree1", "game")
             }
         }
     } 
@@ -775,11 +777,8 @@ function setupRender() {
     for(let i = 0; i < 5; i++) {
         drawIMG("images/hotbarSlot.png", i*64, CLIENT_HEIGHT-64, "HotbarSlot"+i, "UI")
         if(player.inventory.items[i] !== undefined && player.inventory.items[i] !== null) {
-            if(player.inventory.items[i].name === "Fractured Sword") {
-            drawIMG("images/items/fracturedAxe.png", i*64, CLIENT_HEIGHT-64, "HotbarItem"+i, "UI")
+            drawIMG(player.inventory.items[i].texture, i*64, CLIENT_HEIGHT-64, "HotbarItem"+i, "UI")
         }
-    }
-        
     }
     drawIMG("images/selectedHotbarSlot.png", 0*64, CLIENT_HEIGHT-64, "selectedHotbarSlot", "UI")
     
