@@ -357,6 +357,8 @@ function mapUnString(string) {
                 tile.decor = ""
             } else if(string[x+(y*map.height)+4+(map.width*map.height)] === "b") {
                 tile.decor = "borealTree1"
+            } else if(string[x+(y*map.height)+4+(map.width*map.height)] === "c") {
+                tile.decor = "rock"
             }
         }
     }

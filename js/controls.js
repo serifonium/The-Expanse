@@ -33,6 +33,17 @@ document.addEventListener('keydown', logKey);
                             document.getElementById(String(player.interactTile.pos.x + (player.interactTile.pos.y * player.map.width)) + " borealTree1").remove()
                         }
                     }
+                } else if(player.inventory.items[player.itemSelected].name === "Fractured Pickaxe") {
+                    if(player.interactTile.decor === "rock" && player.interactTile.cooldown === 0) {
+                        player.interactTile.hits += -1
+                        player.interactTile.cooldown = 4
+                        if(player.interactTile.hits === 0) {
+                            player.interactTile.decor = ""
+                            player.interactTile.tags.collisionDetection = false
+                            
+                            document.getElementById(String(player.interactTile.pos.x + (player.interactTile.pos.y * player.map.width)) + " rock").remove()
+                        }
+                    }
                 }
                 
                 

@@ -32,6 +32,30 @@ function update() {
                         player.map.grid[x][y].cooldown += -1
                     }
                 }
+            } if(player.map.grid[x][y].decor === "rock") {
+                if(player.map.grid[x][y].cooldown > 0) {
+                    if(player.map.grid[x][y].cooldown === 4) {
+                        let off = Number(findTileId(x, y, " rock").style.left.replace('px',''))
+                        findTileId(x, y, " rock").style.left = String(off - 2) + "px"
+                        player.map.grid[x][y].cooldown += -1
+                        console.log(off)
+                    }
+                    else if(player.map.grid[x][y].cooldown === 3) {
+                        let off = Number(findTileId(x, y, " rock").style.left.replace('px',''))
+                        findTileId(x, y, " rock").style.left = String(off + 2) + "px"
+                        player.map.grid[x][y].cooldown += -1
+                    }
+                    else if(player.map.grid[x][y].cooldown === 2) {
+                        let off = Number(findTileId(x, y, " rock").style.left.replace('px',''))
+                        findTileId(x, y, " rock").style.left = String(off + 2) + "px"
+                        player.map.grid[x][y].cooldown += -1
+                    } 
+                    else if(player.map.grid[x][y].cooldown === 1) {
+                        let off = Number(findTileId(x, y, " rock").style.left.replace('px',''))
+                        findTileId(x, y, " rock").style.left = String(off - 2) + "px"
+                        player.map.grid[x][y].cooldown += -1
+                    }
+                }
             }
         }
     }

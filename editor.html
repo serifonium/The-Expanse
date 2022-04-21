@@ -20,7 +20,7 @@
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
 
-        var map = new Map(23, 13, "map")
+        var map = new Map(30, 15, "map")
         for(let x in map.grid) {
             for(let y in map.grid[x]) {
                 map.grid[x][y].type = "void"
@@ -169,6 +169,9 @@
                     if(tile.decor === "borealTree1") {
                         ctx.fillStyle = "#5c3a23" 
                         ctx.fillRect(16*x+4, 16*y+4, 7, 7)
+                    } else if(tile.decor === "rock") {
+                        ctx.fillStyle = "#666666" 
+                        ctx.fillRect(16*x+4, 16*y+4, 7, 7)
                     } else {
                         ctx.fillStyle = "#000000"
                     }
@@ -188,6 +191,9 @@
             } if(e.key === "3") {
                 selected = "water1"
                 selectedDecor = ""
+            } if(e.key === "8") {
+                selected = ""
+                selectedDecor = "rock"
             } if(e.key === "9") {
                 selected = ""
                 selectedDecor = "borealTree1"
@@ -231,6 +237,8 @@
                         string = string + "a"
                     } else if(tile.decor === "borealTree1") {
                         string = string + "b"
+                    } else if(tile.decor === "rock") {
+                        string = string + "c"
                     }
 
                     

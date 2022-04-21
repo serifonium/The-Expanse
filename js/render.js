@@ -755,6 +755,8 @@ function setupRender() {
         for(let y in player.map.grid[x]) {
             if(player.map.grid[x][y].decor === "borealTree1") {
                 drawIMG("images/borealTree1.png", x*64-32, y*64-288, String(Number(x)+(Number(y)*player.map.width))+" borealTree1", "game")
+            } if(player.map.grid[x][y].decor === "rock") {
+                drawIMG("images/rock.png", x*64, y*64, String(Number(x)+(Number(y)*player.map.width))+" rock", "game")
             }
         }
     } 

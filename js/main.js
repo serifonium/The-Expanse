@@ -203,18 +203,22 @@ function setupWorld() {
     universe[0].planets[1].rooms[0].grid[20][12].type = "snow"
     */
 
-    universe[0].planets[1].rooms.push(mapUnString("2313ccccccdddddddccbbbbbddddddcbbbbbbbdddddccbbbbbbdddddcbbbbbbbbddddcbbbbbbbbbdddcbbbbbbbbbdddcbbbbbbbbbbddcbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbbccbbbbbbbbbbcccbbbbbbbbbbbccbbbbbbbbbbcccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaabaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"))
+    universe[0].planets[1].rooms.push(mapUnString("3015cccccccccccddddccbbbbbbbbdddddcbbbbbbbbbdddddccbbbbbbbbbddddccbbbbbbbbbddddcbbbbbbbbbbbdddcbbbbbbbbbbbdddcbbbbbbbbbbbdddcbbbbbbbbbbbbddccbbbbbbbbbbbddccbbbbbbbbbbbbdcbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbccccbbbbbbbbbbbbcccbbbbbbbbbbccccccbbbbbbbccccccccbbbbbbbccccccccbbbbbbbbcccccccbbbbbbbbbbcccccbbbbbbbbbbccccccbbbbbbbbbbcccccbbbbbbbbbbccccccbbbbbbbbcccccccccbbbbbccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaabaaaaaaaaaabaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaabaaaabaaaaaaaaaaaabaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaacaaaaaaaaaabaaaaaaaaaaaaaaacacaaaaaaaaacaaaaaaaaaaaaaaacaacaacaaaaaacaaaaccacaaaaaaaaaacaacacaaaaaaacaacacccaaaaaaaaacaaacaaaaaaaaaaaaccaaaaaaaaaaaaaaaaaaa"))
     universe[0].planets[1].rooms[0].grid[3][7].decor = "d"
     //tpHitbox(20, 12, 1, 1, universe[0].planets[1].rooms[0], "Hz-892 Landing", "IceCliffside1")
 
-    for(let y = 0; y < 13; y++) {
-        for(let x = 0; x < 23; x++) {
+    for(let y = 0; y < 15; y++) {
+        for(let x = 0; x < 30; x++) {
             if(universe[0].planets[1].rooms[0].grid[x][y].type === "ice" || universe[0].planets[1].rooms[0].grid[x][y].type === "water1") {
                 universe[0].planets[1].rooms[0].grid[x][y].tags.collisionDetection = true
             } 
             if(universe[0].planets[1].rooms[0].grid[x][y].decor === "borealTree1") {
                 universe[0].planets[1].rooms[0].grid[x][y].tags.collisionDetection = true
                 universe[0].planets[1].rooms[0].grid[x][y].hits = 12
+                universe[0].planets[1].rooms[0].grid[x][y].cooldown = 0
+            } else if(universe[0].planets[1].rooms[0].grid[x][y].decor === "rock") {
+                universe[0].planets[1].rooms[0].grid[x][y].tags.collisionDetection = true
+                universe[0].planets[1].rooms[0].grid[x][y].hits = 3
                 universe[0].planets[1].rooms[0].grid[x][y].cooldown = 0
             }
         }
@@ -539,9 +543,9 @@ currentHitboxes = player.map.hitboxes
 
 player.inventory.items[0] = new Item("Fractured Sword", "Sword")
 player.inventory.items[1] = new Item("Fractured Axe", "Axe")
-player.inventory.items[2] = new Item("Basic Fishing Pole", "Fishing Rod")
-player.inventory.items[3] = new Item("Fractured Pickaxe", "Pickaxe")
-player.inventory.items[2].interface = new Interface("Fishing")
+player.inventory.items[3] = new Item("Basic Fishing Pole", "Fishing Rod")
+player.inventory.items[2] = new Item("Fractured Pickaxe", "Pickaxe")
+player.inventory.items[3].interface = new Interface("Fishing")
 
 let p = particleSetup()
 let sp = spaceWarpSetup()
