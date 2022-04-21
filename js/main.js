@@ -214,7 +214,7 @@ function setupWorld() {
             } 
             if(universe[0].planets[1].rooms[0].grid[x][y].decor === "borealTree1") {
                 universe[0].planets[1].rooms[0].grid[x][y].tags.collisionDetection = true
-                universe[0].planets[1].rooms[0].grid[x][y].hits = 8
+                universe[0].planets[1].rooms[0].grid[x][y].hits = 12
                 universe[0].planets[1].rooms[0].grid[x][y].cooldown = 0
             }
         }
