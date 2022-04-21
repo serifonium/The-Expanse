@@ -5,29 +5,34 @@ on github for friends
 
 code confusing and difficult to understand (beginner)
 
-goofy ahh uncle
+<br>
 
 demo-https://serifonium.github.io/untitled-game/
 
-CONTROLS:
+### CONTROLS:
 
 wasd - move
 
 esc - access menu (in progress)
 
-space - interact with tile (in progress)
+space - interact with tile 
 
 12345 - select hotbar slots
 
 
 
 
-# Recent Changelog vA.0.0.2:
+## Recent Changelog vA.0.0.3:
+added rough loading screen
 
-added the ability to cut down trees using axe (slot #2)
+added non-funtional inventory framework
 
-tree shakes
-  
-made selection of items (#1.sword, #2.axe, #3.fishing rod, #4.pickaxe)
+updated map
+
+added rocks
+
+added ability to break rocks with pickaxe (#3)
+
+changed order of items
 
 
