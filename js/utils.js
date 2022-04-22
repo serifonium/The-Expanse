@@ -388,12 +388,17 @@ function drawIMG(img, x, y, id, place) {
     box.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px; height: "+String(h)+"px; width: "+String(w)+"px; margin-bottom: 15px; background-color:" + colour
     let body = document.getElementById(place);
     body.appendChild(box);
-} function drawTEXT(x, y, text, type, id, place) {
+} function drawTEXT(x, y, text, type, id, place, centered) {
     let textbox = document.createElement(type);
     if(id !== undefined) {
         textbox.id = id
     }
-    textbox.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px; width:100%;"
+    if(centered === true) {
+        textbox.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px; width:100%;"
+    } else {
+        textbox.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px;"
+    }
+    
     let node = document.createTextNode(text);
     let body = document.getElementById(place);
     

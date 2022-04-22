@@ -789,8 +789,10 @@ function setupRender() {
         } else {
             drawIMG("images/empty.png", i*64, CLIENT_HEIGHT-64, "HotbarItem"+i, "UI")
         }
+        drawTEXT(i*64+44, CLIENT_HEIGHT-44, "", "p", "HotbarAmount"+String(i), "UI")
     }
     drawIMG("images/selectedHotbarSlot.png", 0*64, CLIENT_HEIGHT-64, "selectedHotbarSlot", "UI")
+    
     
     
 }

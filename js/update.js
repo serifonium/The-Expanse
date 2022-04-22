@@ -102,6 +102,13 @@ function update() {
     for(let x = 0; x < 5; x++) {
         if(player.inventory.items[x] !== null) {
             document.getElementById("HotbarItem"+String(x)).src = player.inventory.items[x].texture
+            
+            if(player.inventory.items[x].amount > 1) {
+                document.getElementById("HotbarAmount"+String(x)).textContent = String(player.inventory.items[x].amount)
+                console.log("yes")
+            } else {
+            document.getElementById("HotbarAmount"+String(x)).textContent = ""
+            }
         }
     }
 

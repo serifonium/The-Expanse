@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>untitled-game</title>
+    <title>The Expanse</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     
 </head>
@@ -75,7 +75,7 @@
                 drawRECT(xOffset+1*64+4,yOffset+64*2+4,2*64-8, 3*64-8, "#dddddd", "innerPlayerBackground", "inventory")
                 drawRECT(xOffset+0*64,yOffset+64*5,4*64, 1*64, "#6b6b6b", "outerPlayerNameBackground", "inventory")
                 drawRECT(xOffset+0*64+4,yOffset+64*5+4,4*64-8, 1*64-8, "#dddddd", "innerPlayerNameBackground", "inventory")
-                drawTEXT(0, -16, player.name, "h1", "playerName", "innerPlayerNameBackground")
+                drawTEXT(0, -16, player.name, "h1", "playerName", "innerPlayerNameBackground", true)
                 document.getElementById("playerName").style.textAlign = "center";
                 //console.log("yuus")
             </script>
@@ -98,8 +98,8 @@
         drawRECT(window.innerWidth/2-43, window.innerHeight/1.8-3, 86, 26, "#666666", "loadingBarBack", "loading")
         drawRECT(window.innerWidth/2-40, window.innerHeight/1.8, 80, 20, "#000000", "loadingBar", "loading")
         
-        drawTEXT(0/2,window.innerHeight/2, loadingText[Math.floor(Math.random()*loadingText.length)], "b", "loadingText", "loading")
-        drawTEXT(0/2,window.innerHeight/4, "Untitled-Game", "h", "loadingTitle", "loading")
+        drawTEXT(0/2,window.innerHeight/2, loadingText[Math.floor(Math.random()*loadingText.length)], "b", "loadingText", "loading", true)
+        drawTEXT(0/2,window.innerHeight/4, "The Expanse", "h", "loadingTitle", "loading", true)
         document.getElementById("loadingText").style.textAlign = "center";
         document.getElementById("loadingTitle").style.textAlign = "center";
         document.getElementById("loadingTitle").style.fontSize = "60px"
