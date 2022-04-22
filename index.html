@@ -84,6 +84,8 @@
     
     <div id="loading">
     </div>
+    
+    
 
     
     
@@ -95,11 +97,29 @@
         document.getElementById("loading").style.width = window.innerWidth+"px"
         document.getElementById("loading").style.height = window.innerHeight+"px"
         drawRECT(0, 0, window.innerWidth, window.innerHeight, "#4287f5", "loadingBackground", "loading")
-        drawRECT(window.innerWidth/2-43, window.innerHeight/1.8-3, 86, 26, "#666666", "loadingBarBack", "loading")
-        drawRECT(window.innerWidth/2-40, window.innerHeight/1.8, 80, 20, "#000000", "loadingBar", "loading")
+        //drawRECT(window.innerWidth/2-43, window.innerHeight/1.8-3, 86, 26, "#666666", "loadingBarBack", "loading")
+        //drawRECT(window.innerWidth/2-40, window.innerHeight/1.8, 80, 20, "#000000", "loadingBar", "loading")
+
+        drawRECT(window.innerWidth/2-320/2-8, window.innerHeight/5-8, 320+16, 192*3+16+16, "#6b6b6b", "saveBackground", "loading")
+        for (let i = 0; i < 3; i++) {
+            drawRECT(8, 8+i*200, 320, 192, "#dddddd", "saveFile"+i+"Background", "saveBackground")
+            drawRECT(128+8, 8+i*200, 8, 192, "#6b6b6b", "saveFile"+i+"PlayerBorder", "saveBackground")
+            drawIMG("/images/startButton.png", 128+44, 128+i*200, "saveFile"+i+"Start", "saveBackground")
+            if(localStorage.getItem("save"+i) === null) {
+                drawTEXT(64,8+i*200, "New File", "b", "saveFile"+i+"Title", "saveBackground", true)
+                document.getElementById("saveFile"+i+"Title").style.fontSize = "32px"
+            } else {
+                drawTEXT(64,8+i*200, "Save File "+i, "b", "saveFile"+i+"Title", "saveBackground", true)
+                document.getElementById("saveFile"+i+"Title").style.fontSize = "32px"
+                drawTEXT(160,8+i*200+50, "name", "b", "saveFile"+i+"Name", "saveBackground", false)
+            }
+        }
+        document.getElementById("saveFile0Start").onclick=loadFile0;
+        document.getElementById("saveFile1Start").onclick=loadFile1;
+        document.getElementById("saveFile2Start").onclick=loadFile2;
         
-        drawTEXT(0/2,window.innerHeight/2, loadingText[Math.floor(Math.random()*loadingText.length)], "b", "loadingText", "loading", true)
-        drawTEXT(0/2,window.innerHeight/4, "The Expanse", "h", "loadingTitle", "loading", true)
+        drawTEXT(0/2,window.innerHeight/6.5, loadingText[Math.floor(Math.random()*loadingText.length)], "b", "loadingText", "loading", true)
+        drawTEXT(0/2,window.innerHeight/16, "The Expanse", "b", "loadingTitle", "loading", true)
         document.getElementById("loadingText").style.textAlign = "center";
         document.getElementById("loadingTitle").style.textAlign = "center";
         document.getElementById("loadingTitle").style.fontSize = "60px"
@@ -157,9 +177,9 @@
     setInterval(() => {
         if(loading < 80) {
             loading++
-            document.getElementById("loadingBar").style.width = String(loading) + "px"
+            //document.getElementById("loadingBar").style.width = String(loading) + "px"
             if(loading === 80) {
-                document.getElementById("loading").remove()
+                //document.getElementById("loading").remove()
             }
         }
     }, 20);

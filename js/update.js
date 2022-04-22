@@ -33,6 +33,8 @@ function update() {
                         let off = Number(findTileId(x, y, " borealTree1").style.left.replace('px',''))
                         findTileId(x, y, " borealTree1").style.left = String(off - 3) + "px"
                         player.map.grid[x][y].cooldown += -1
+                    } else {
+                        player.map.grid[x][y].cooldown += -1
                     }
                 }
             } if(player.map.grid[x][y].decor === "rock") {
@@ -55,6 +57,8 @@ function update() {
                     else if(player.map.grid[x][y].cooldown === 1) {
                         let off = Number(findTileId(x, y, " rock").style.left.replace('px',''))
                         findTileId(x, y, " rock").style.left = String(off - 3) + "px"
+                        player.map.grid[x][y].cooldown += -1
+                    } else {
                         player.map.grid[x][y].cooldown += -1
                     }
                 }
@@ -93,9 +97,16 @@ function update() {
         for(let x = 0; x < 13; x++) {
             if(player.inventory.items[y*13+x] !== null) {
                 document.getElementById("slot"+(y*13+x)+"item").src = player.inventory.items[y*13+x].texture
-                if(player.inventory.items[y*13+x].amount > 1) {
-                    document.getElementById("slot"+String(y*13+x)+"amount").textContent = String(player.inventory.items[y*13+x].amount)
+                if(player.inventory.items[y*13+x].amount > 0) {
+                    if(player.inventory.items[y*13+x].amount > 1) {
+                        document.getElementById("slot"+String(y*13+x)+"amount").textContent = String(player.inventory.items[y*13+x].amount)
+                    } else {
+                    document.getElementById("slot"+String(y*13+x)+"amount").textContent = ""
+                    }
                 }
+            } else {
+                document.getElementById("slot"+(y*13+x)+"item").src = "images/empty.png"
+                document.getElementById("slot"+String(y*13+x)+"amount").textContent = ""
             }
         }
     }
@@ -105,10 +116,12 @@ function update() {
             
             if(player.inventory.items[x].amount > 1) {
                 document.getElementById("HotbarAmount"+String(x)).textContent = String(player.inventory.items[x].amount)
-                console.log("yes")
             } else {
             document.getElementById("HotbarAmount"+String(x)).textContent = ""
             }
+        } else {
+            document.getElementById("HotbarItem"+String(x)).src = "images/empty.png"
+            document.getElementById("HotbarAmount"+String(x)).textContent = ""
         }
     }
 
