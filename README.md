@@ -22,7 +22,19 @@ space - interact with tile
 
 
 
-## Recent Changelog vA.0.0.4:
+## Recent Changelog vA.0.0.5:
+
+updated loading screen
+
+-  added loading bar
+-  more loading messages
+-  any loading message suggestions should be sent in a pull request
+
+that's it
+<br>
+leave
+
+### Previous Changelog vA.0.0.4:
 
 removed symbols at the bottom
 
@@ -31,6 +43,5 @@ mining rocks now gives you stone
 chopping trees now gives you wood
 
 items show in inventory
-
 
 
