@@ -13,37 +13,11 @@
     
 </head>
 <body id="body">
-    
-    
-    
-    <div id="game">
-        <img src="images/floor1.png" hidden id="floor1">
-        <img src="images/floor2.png" hidden id="floor2">
-        <img src="images/shipComputer.png" hidden id="shipComputer">
-        <img src="images/slot1.png" hidden id="slot1">
-        <img src="images/slot2.png" hidden id="slot2">
-        <img src="images/items/nuclearFuel.png" hidden id="nuclearFuel">
-        <img src="images/borealTree1.png" hidden id="borealTree1">
-        <img src="images/borealTreeStump.png" hidden id="borealTreeStump">
-        <img src="images/ice1.png" hidden id="ice1">
-        <img src="images/items/fracturedAxe.png" hidden id="fracturedAxe">
-        <img src="images/snow.png" id="snow">
-        <img src="images/interfaceTab.png" hidden id="interfaceTab">
-        <img src="images/inventorySymbol.png" hidden id="inventorySymbol">
-        <img src="images/mapSymbol.png" hidden id="mapSymbol">
-        <img src="images/skillsSymbol.png" hidden id="skillsSymbol">
-        <img src="images/friendshipSymbol.png" hidden id="friendshipSymbol">
-        <img src="images/ironTree.png" hidden id="ironTree">
-        <img src="images/items/wood.png" hidden id="wood">
-        <img src="images/items/Basic Fishing Pole.png" hidden id="basicFishingPole">
-        <img src="images/items/seaweed.png" hidden id="seaweed">
-        <img src="images/water1.png" hidden id="water1">
-        <img src="images/items/frostMinnow.png" hidden id="frostMinnow">
-        <img src="images/items/ironOre.png" hidden id="ironOre">
-        <img src="images/furnace.png" hidden id="furnace">
+    <div id="game"> <!-- div with all map components -->
+        
 
     </div>
-    <div id="light">
+    <div id="light"> <!-- div with all map light tiles -->
 
     </div>
 
@@ -57,14 +31,14 @@
     <script src="databases/itemDatabase.js"></script>
     <script src="databases/loadingText.js"></script>
 
-    <div id="UI">
+    <div id="UI"> <!-- div with all ui -->
         
         
     </div>
 
     
 
-    <div id="interface" >
+    <div id="interface" > <!-- div with all interfaces -->
         <script>
             drawRECT(0, 0, window.innerWidth, window.innerHeight, "#000000", "darkBackground", "interface")
             document.getElementById("darkBackground").style.opacity = 0.5
@@ -101,7 +75,7 @@
                 drawRECT(xOffset+1*64+4,yOffset+64*2+4,2*64-8, 3*64-8, "#dddddd", "innerPlayerBackground", "inventory")
                 drawRECT(xOffset+0*64,yOffset+64*5,4*64, 1*64, "#6b6b6b", "outerPlayerNameBackground", "inventory")
                 drawRECT(xOffset+0*64+4,yOffset+64*5+4,4*64-8, 1*64-8, "#dddddd", "innerPlayerNameBackground", "inventory")
-                drawTEXT(xOffset+1.3*64,yOffset+64*5-12, player.name, "h1", "playerName", "inventory")
+                drawTEXT(0, -16, player.name, "h1", "playerName", "innerPlayerNameBackground")
                 document.getElementById("playerName").style.textAlign = "center";
                 //console.log("yuus")
             </script>
@@ -121,8 +95,14 @@
         document.getElementById("loading").style.width = window.innerWidth+"px"
         document.getElementById("loading").style.height = window.innerHeight+"px"
         drawRECT(0, 0, window.innerWidth, window.innerHeight, "#4287f5", "loadingBackground", "loading")
-        drawTEXT(window.innerWidth/2,window.innerHeight/2, loadingText[Math.floor(Math.random()*loadingText.length)], "p", "loadingText", "loading")
-        //document.getElementById("loading").style
+        drawRECT(window.innerWidth/2-43, window.innerHeight/1.8-3, 86, 26, "#666666", "loadingBarBack", "loading")
+        drawRECT(window.innerWidth/2-40, window.innerHeight/1.8, 80, 20, "#000000", "loadingBar", "loading")
+        
+        drawTEXT(0/2,window.innerHeight/2, loadingText[Math.floor(Math.random()*loadingText.length)], "b", "loadingText", "loading")
+        drawTEXT(0/2,window.innerHeight/4, "Untitled-Game", "h", "loadingTitle", "loading")
+        document.getElementById("loadingText").style.textAlign = "center";
+        document.getElementById("loadingTitle").style.textAlign = "center";
+        document.getElementById("loadingTitle").style.fontSize = "60px"
 
     </script>
 
@@ -173,9 +153,16 @@
 
     </div>
     <script>
-    //setTimeout(function () {
-        document.getElementById("loading").remove()
-    //}, 2000);
+        let loading = 0
+    setInterval(() => {
+        if(loading < 80) {
+            loading++
+            document.getElementById("loadingBar").style.width = String(loading) + "px"
+            if(loading === 80) {
+                document.getElementById("loading").remove()
+            }
+        }
+    }, 20);
         
     </script>
     <div onLoad="removeLoadingScreen()">
@@ -184,3 +171,21 @@
 </body>
 </html>
 
+
+<!-- to do:
+
+    player animation & design
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->

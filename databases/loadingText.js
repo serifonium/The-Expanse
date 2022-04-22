@@ -16,5 +16,6 @@ var loadingText = [
     "stop",
     "Hell",
     "Who is Wyoming?",
-    "☃"
+    "☃",
+    "I love lean!! 💜",
 ]

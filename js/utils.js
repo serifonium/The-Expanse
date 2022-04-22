@@ -393,12 +393,13 @@ function drawIMG(img, x, y, id, place) {
     if(id !== undefined) {
         textbox.id = id
     }
-    textbox.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px;"
+    textbox.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px; width:100%;"
     let node = document.createTextNode(text);
     let body = document.getElementById(place);
-    textbox.appendChild(node);
     
+    textbox.appendChild(node);
     body.appendChild(textbox);
+
 } function playSFX(sfx) {
     let audio = new Audio(sfx);
     audio.play();
