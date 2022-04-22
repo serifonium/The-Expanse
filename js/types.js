@@ -53,7 +53,6 @@ class Map {
         this.width = w
         this.grid = []
         this.hitboxes = []
-        this.enemies = []
         this.timeSinceLastVisit = 0
         for (let a = 0; a !== w; a++) {
             this.grid[a] = []
@@ -87,8 +86,6 @@ class Player {
         this.map = map 
         this.x = x
         this.y = y
-        this.galaxy = universe[0]
-        this.planet = universe[0].planets[1]
         this.tx = Math.floor((this.x + 25)/64)
         this.ty = Math.floor((this.y + 25)/64)
         this.vx = 0
@@ -212,8 +209,7 @@ class Player {
             }
         }
 
-        this.equippedSpaceship = new Spaceship("Lightwing", 4, 0)
-
+        
         this.personalOptions = {
             highlightInteract: true,
             hitboxesHighlighted: true
@@ -246,7 +242,6 @@ class Player {
         } else if(this.rotation === 1) {
             this.interactTile = this.map.grid[this.tx][this.ty].left
         }
-        this.equippedSpaceship.update()
         if(this.itemCooldown !== 0) {
             this.itemCooldown -= 1
         } if(this.canMove === false) {
@@ -297,9 +292,7 @@ class Player {
             name : this.name,
             x : this.x,
             y : this.y,
-            galaxy: this.galaxy.toSerializable(),
-            map: this.map.toSerializable(),
-            planet: this.planet.toSerializable(),
+            map: this.map.name,
 
             baseSpeed: this.baseSpeed,
             baseStrength: this.baseStrength,
@@ -308,9 +301,8 @@ class Player {
             health: this.health = 20,
             maxHealth: this.maxHealth = 20,
             skills: this.skills,
-            //effects: this.effects,
             collections: this.collections,
-            //inventory: this.inventory
+            inventory: this.inventory.items
         }
     }
 
@@ -384,90 +376,7 @@ class Hitbox {
 }
 
 
-class Galaxy {
-    constructor(name, x, y) {
-        this.name = name
-        this.x = x
-        this.y = y
-        this.planets = []
-    }
-
-    fromSerliazable(serlialableObject){
-        this.name = serlialableObject.name;
-        this.x = serlialableObject.x;
-        this.y = serlialableObject.y;
-        this.planets = serlialableObject.planets.map(p => new Planet().fromSerliazable(p))
-    }
-
-    toSerializable(){
-        return {
-            name: this.name,
-            x: this.x,
-            y: this.y,
-            planets: this.planets.map(p => p.toSerializable())
-        } 
-        /*
-        {
-            name: "whatever",
-            x: 123,
-            y: "123"
-            planets : [
-                { 
-                    name : "planet 1",
-                    type : "wasd"
-                },
-                 { 
-                    name : "planet 1",
-                    type : "wasd"
-                }
-            ]
-        }
-        */
-    }
-    serialize(){
-        // return JSON.stringify( {
-        //     name: this.name,
-        //     x: this.x,
-        //     y: this.y,
-        //     planets: [
-                
-        //     ]
-        // } )
-    }
-}
-class Planet {
-    constructor(name, distance, type, temperature, radius) {
-        this.name = name
-        if(name === undefined) {this.name = "Undiscovered"}
-        this.distance = distance // AU
-        if(distance === undefined) {this.distance = Math.floor(Math.random() * 30 + 5)}
-        this.type = type
-        this.temperature = temperature // Celsius
-        this.radius = radius // km * 1000
-        this.area = Math.floor(4 * 3.14 * radius * radius)
-        this.orbits = []
-        this.tags = {}
-        this.rooms = []
-    }
-
-    toSerializable(){
-        return {
-            name: this.name,
-            distance: this.distance,
-            type: this.type,
-            temperature: this.temperature,
-            radius: this.radius,
-            area: this.area,
-            orbits: this.orbits.map(p => p.toSerializable()),
-            tags: this.tags,
-            rooms: this.rooms.map(m => m.toSerializable())
-        } 
-    }
-
-    fromSerliazable(sssss){
-        this.name  = sssss.name;
-    }
-} class Interface {
+class Interface {
     constructor(name) {
         this.name = name
         if(name === null) {
@@ -479,40 +388,7 @@ class Planet {
     }
 }
 
-class Spacecraft {
-    constructor() {
-        this.name
-        this.distance
-    }
-} class Spaceship {
-    constructor(name, rarity, stars) {
-        this.name = name
-        this.rarity = rarity
-        this.stars = stars
-        this.acceleration = function(x) {return (x * 2) ^ 2}
-        this.speed = 10
-        this.defense = 400
-        this.damage = 25
-        this.shields = 60
-        this.agility = 75
-        this.scanning = 4.5
-        this.fuel = 438
-        this.fuelConsumptionRate = 5    //  x/s
-
-        this.speedGear = 0
-        this.travelTime = -0.1
-        this.travelDestination
-    }
-    update() {
-        if(this.travelTime > 0.1) {
-            this.travelTime = this.travelTime - 2
-            if(this.travelTime < 0) {
-                player.planet = this.travelDestination
-                this.speedGear = 0
-            }
-        }
-    }
-} class Item {
+class Item {
     constructor(name, type, amount) {
         this.name = name
         this.type = type

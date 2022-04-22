@@ -83,16 +83,7 @@ function update() {
         player.canMove = false
     } else {
         player.canMove = true
-    } for(let g in universe) {
-        
-        for(let p in universe[g].planets) {
-            
-            for(let r in universe[g].planets[p].rooms) {
-                
-                universe[g].planets[p].rooms[r].update()
-            }
-        }
-    }
+    } 
     for(let y = 0; y < 2; y++) {
         for(let x = 0; x < 13; x++) {
             if(player.inventory.items[y*13+x] !== null) {
@@ -128,9 +119,6 @@ function update() {
 
     if (player.interfaceOpen !== undefined) {
         
-    }
-    for(let e of player.map.enemies) {
-        e.update()
     }
     render()
 }

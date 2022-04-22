@@ -411,8 +411,13 @@ function drawIMG(img, x, y, id, place) {
     textbox.appendChild(node);
     body.appendChild(textbox);
 
-} function playSFX(sfx) {
+} function playSFX(sfx, onEnd) {
     let audio = new Audio(sfx);
+    if (onEnd){
+        audio.onended = () => {
+            onEnd();
+        }
+    }
     audio.play();
     console.log("played")
 }
