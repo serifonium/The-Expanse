@@ -8,11 +8,19 @@ class Tile {
         this.tags = {collisionDetection: false,
         canGrowTrees: false}
         this.hitbox = null
+        this.light = 1
     }
     update() {
         if (this.onPlayerInteractActive === true) {
             this.onPlayerInteractRender()
         }
+        /*
+        if(player.tx === this.pos.x && player.ty === this.pos.y) {
+            this.light = 1
+        } else {
+            this.light = 0.7
+        }
+        */
     } 
     orientate(map) {
         if(this.pos.y - 1 >= 0) {
@@ -520,9 +528,9 @@ class Spacecraft {
             this.amount = amount
         } 
         if(name === "Wood") {
-            this.texture = wood
+            this.texture = "images/items/wood.png"
         } else if (name === "Stone") {
-            this.texture = stone
+            this.texture = "images/items/stone.png"
         } else if (name === "Fractured Sword") {
             this.texture = "images/items/fracturedSword.png"
             this.attack = 3

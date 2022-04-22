@@ -209,6 +209,7 @@ function setupWorld() {
 
     for(let y = 0; y < 15; y++) {
         for(let x = 0; x < 30; x++) {
+            universe[0].planets[1].rooms[0].grid[x][y].light = 0.92
             if(universe[0].planets[1].rooms[0].grid[x][y].type === "ice" || universe[0].planets[1].rooms[0].grid[x][y].type === "water1") {
                 universe[0].planets[1].rooms[0].grid[x][y].tags.collisionDetection = true
             } 
@@ -218,9 +219,12 @@ function setupWorld() {
                 universe[0].planets[1].rooms[0].grid[x][y].cooldown = 0
             } else if(universe[0].planets[1].rooms[0].grid[x][y].decor === "rock") {
                 universe[0].planets[1].rooms[0].grid[x][y].tags.collisionDetection = true
-                universe[0].planets[1].rooms[0].grid[x][y].hits = 3
+                universe[0].planets[1].rooms[0].grid[x][y].hits = 5
                 universe[0].planets[1].rooms[0].grid[x][y].cooldown = 0
             }
+            if(universe[0].planets[1].rooms[0].grid[x][y].type === "ice") {
+                universe[0].planets[1].rooms[0].grid[x][y].tags.collisionDetection = true
+            } 
         }
     }
     function fillTilesType(x1, x2, y1, y2, map, type) {

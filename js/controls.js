@@ -29,7 +29,7 @@ document.addEventListener('keydown', logKey);
                         if(player.interactTile.hits === 0) {
                             player.interactTile.decor = ""
                             player.interactTile.tags.collisionDetection = false
-                            
+                            inventoryAdd(new Item("Wood", "Resource", 4))
                             document.getElementById(String(player.interactTile.pos.x + (player.interactTile.pos.y * player.map.width)) + " borealTree1").remove()
                         }
                     }
@@ -40,7 +40,7 @@ document.addEventListener('keydown', logKey);
                         if(player.interactTile.hits === 0) {
                             player.interactTile.decor = ""
                             player.interactTile.tags.collisionDetection = false
-                            
+                            inventoryAdd(new Item("Stone", "Resource", 4))
                             document.getElementById(String(player.interactTile.pos.x + (player.interactTile.pos.y * player.map.width)) + " rock").remove()
                         }
                     }
@@ -120,7 +120,18 @@ document.addEventListener('keydown', logKey);
 
 
 
-
+        document.addEventListener('click', function(e) {
+            getMouseClick(e)
+        })
+        var clickX = null
+        var clickY = null
+        function getMouseClick(event) {
+            var mx_ = event.clientX
+            var my_ = event.clientY
+            clickX = mx_
+            clickY = my_
+            console.log(clickX, clickY)
+        }
 
         document.addEventListener('mousemove', function(e) {
             getMousePos(e)

@@ -760,6 +760,12 @@ function setupRender() {
             }
         }
     } 
+    for(let x in player.map.grid) {
+        for(let y in player.map.grid[x]) {
+            drawRECT(x*64, y*64, 64,64, "#000000", String(Number(x)+(Number(y)*player.map.width))+"light", "light")
+            document.getElementById(String(Number(x)+(Number(y)*player.map.width))+"light").style.opacity = 1 - player.map.grid[x][y].light
+        }
+    } 
 
     if(player.personalOptions.hitboxesHighlighted === true) {
         for (let i of currentHitboxes) {
@@ -780,9 +786,12 @@ function setupRender() {
         drawIMG("images/hotbarSlot.png", i*64, CLIENT_HEIGHT-64, "HotbarSlot"+i, "UI")
         if(player.inventory.items[i] !== undefined && player.inventory.items[i] !== null) {
             drawIMG(player.inventory.items[i].texture, i*64, CLIENT_HEIGHT-64, "HotbarItem"+i, "UI")
+        } else {
+            drawIMG("images/empty.png", i*64, CLIENT_HEIGHT-64, "HotbarItem"+i, "UI")
         }
     }
     drawIMG("images/selectedHotbarSlot.png", 0*64, CLIENT_HEIGHT-64, "selectedHotbarSlot", "UI")
+    
     
 }
 
@@ -803,18 +812,24 @@ function render() {
     
     if(player.x < CLIENT_WIDTH / 2) {
         document.getElementById("game").style.left = 0 + "px"
+        document.getElementById("light").style.left = 0 + "px"
     } else if(player.x > (player.map.width * 64) - (CLIENT_WIDTH / 2)) {
         document.getElementById("game").style.left = -((player.map.width * 64) - CLIENT_WIDTH) + "px"
+        document.getElementById("light").style.left = -((player.map.width * 64) - CLIENT_WIDTH) + "px"
     } else {
         document.getElementById("game").style.left = -(player.x - (CLIENT_WIDTH / 2)) + "px"
+        document.getElementById("light").style.left = -(player.x - (CLIENT_WIDTH / 2)) + "px"
     }
     
     if(player.y < CLIENT_HEIGHT / 2) {
         document.getElementById("game").style.top = "0px"
+        document.getElementById("light").style.top = "0px"
     } else if(player.y > (player.map.height * 64) - (CLIENT_HEIGHT / 2)) {
         document.getElementById("game").style.top = -((player.map.height * 64) - CLIENT_HEIGHT) + "px"
+        document.getElementById("light").style.top = -((player.map.height * 64) - CLIENT_HEIGHT) + "px"
     } else {
         document.getElementById("game").style.top = -(player.y - (CLIENT_HEIGHT / 2)) + "px"
+        document.getElementById("light").style.top = -(player.y - (CLIENT_HEIGHT / 2)) + "px"
     }
     
     document.getElementById("body").scrollTop = 20

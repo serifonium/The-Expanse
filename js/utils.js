@@ -406,4 +406,6 @@ function drawIMG(img, x, y, id, place) {
 }
 function findTileId(x, y, add) {
     return document.getElementById(String(Number(x)+(Number(y)*player.map.width))+add)
+} function findPythDistance(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow((x1-x2),2) + Math.pow((y1-y2),2))
 }

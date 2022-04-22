@@ -43,6 +43,9 @@
         <img src="images/furnace.png" hidden id="furnace">
 
     </div>
+    <div id="light">
+
+    </div>
 
     <script src="js/utils.js"></script>
     <script src="js/types.js"></script>
@@ -55,6 +58,7 @@
     <script src="databases/loadingText.js"></script>
 
     <div id="UI">
+        
         
     </div>
 
@@ -72,8 +76,8 @@
                 document.getElementById("inventory").hidden = true
                 let xOffset = (window.innerWidth-64*13)/2 -0
                 let yOffset = (window.innerHeight-64*7)/2 -0
-                drawRECT(xOffset-8,yOffset-8,64*13+16, 64*7+16, "#6b6b6b", "outerBackground", "inventory")
-                drawRECT(xOffset,yOffset,64*13, 64*7, "#dddddd", "innerBackground", "inventory")
+                drawRECT(xOffset-8,yOffset-8,64*13+16, 64*7+16, "#6b6b6b", "outerInventoryBackground", "inventory")
+                drawRECT(xOffset,yOffset,64*13, 64*7, "#dddddd", "innerInventoryBackground", "inventory")
                 for(let i = 1; i < 14; i++) {
                     for(let y = 1; y < 3; y++) {
                         if(i < 6 && y === 1) {
@@ -81,9 +85,18 @@
                         } else{
                             drawIMG("./images/slot1.png",xOffset+i*64-64, yOffset+y*64-64, "slot"+String((i-1)+((y-1)*13)), "inventory")
                         }
+                        
+                        if(player.inventory.items[(i-1)+((y-1)*13)] === null) {
+                            drawIMG("./images/empty.png",xOffset+i*64-64, yOffset+y*64-64, "slot"+String((i-1)+((y-1)*13))+"item", "inventory")
+                        } else {
+                            
+                            drawIMG(player.inventory.items[(i-1)+((y-1)*13)].texture,xOffset+i*64-64, yOffset+y*64-64, "slot"+String((i-1)+((y-1)*13))+"item", "inventory")
+                        }
+                        drawTEXT(xOffset+i*64-18, yOffset+y*64-38, "", "p", "slot"+String((i-1)+((y-1)*13))+"amount", "inventory")
                     }
                 }
-                //document.getElementById("slot0").onclick=log;
+                //function log() {drawIMG(player.inventory.items[0].texture, 0, 0, "item", "hover")}
+                //document.getElementById("slot0item").onclick=log;
                 drawRECT(xOffset+1*64,yOffset+64*2,2*64, 3*64, "#6b6b6b", "outerPlayerBackground", "inventory")
                 drawRECT(xOffset+1*64+4,yOffset+64*2+4,2*64-8, 3*64-8, "#dddddd", "innerPlayerBackground", "inventory")
                 drawRECT(xOffset+0*64,yOffset+64*5,4*64, 1*64, "#6b6b6b", "outerPlayerNameBackground", "inventory")
@@ -147,8 +160,8 @@
         }
         
 
-        newEffect("Coffee Shot", 90)
-        newEffect("Frostburn Affliction", 90)
+        //newEffect("Coffee Shot", 90)
+        //newEffect("Frostburn Affliction", 90)
         
         //drawTEXT(100, 100, CLIENT_HEIGHT + ", "  + CLIENT_WIDTH, "p", "text", "body")
     </script>
