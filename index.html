@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Expanse</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     
 </head>
 <body id="body">
@@ -104,7 +104,7 @@
         for (let i = 0; i < 3; i++) {
             drawRECT(8, 8+i*200, 320, 192, "#dddddd", "saveFile"+i+"Background", "saveBackground")
             drawRECT(128+8, 8+i*200, 8, 192, "#6b6b6b", "saveFile"+i+"PlayerBorder", "saveBackground")
-            drawIMG("/images/startButton.png", 128+44, 128+i*200, "saveFile"+i+"Start", "saveBackground")
+            drawIMG("images/startButton.png", 128+44, 128+i*200, "saveFile"+i+"Start", "saveBackground")
             if(localStorage.getItem("save"+i) === null) {
                 drawTEXT(64,8+i*200, "New File", "b", "saveFile"+i+"Title", "saveBackground", true)
                 document.getElementById("saveFile"+i+"Title").style.fontSize = "32px"
