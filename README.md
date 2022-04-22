@@ -7,7 +7,7 @@ code confusing and difficult to understand (beginner)
 
 <br>
 
-demo-https://serifonium.github.io/untitled-game/
+demo-https://serifonium.github.io/The-Expanse/
 
 ### CONTROLS:
 
