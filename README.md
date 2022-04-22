@@ -31,6 +31,8 @@ added basic localStorage saving
 - 3 save files
 - saves player inventory
 
+added non-functional deleteSave button
+
 ### Previous Changelog vA.0.0.7:
 
 added startup screen
