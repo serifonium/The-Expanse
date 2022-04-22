@@ -22,19 +22,17 @@ space - interact with tile
 
 
 
-## Recent Changelog vA.0.0.6:
+## Recent Changelog vA.0.0.7:
+
+added startup screen
+
+added abilty to move around items in inventory
+
+### Previous Changelog vA.0.0.6:
 
 updated name
 
 added hotbar aamount numbers
-
-### Previous Changelog vA.0.0.5:
-
-updated loading screen
-
--  added loading bar
--  more loading messages
--  any loading message suggestions should be sent in a pull request
 
 
 
