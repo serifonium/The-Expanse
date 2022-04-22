@@ -26,8 +26,8 @@ function saveGame(file) {
     player.maxHealth = file.player.maxHealth
     player.inventory.items = file.player.inventory
     player.skills = file.player.skills
-    player.x = file.player.x
-    player.y = file.player.y
+    //player.x = file.player.x
+    //player.y = file.player.y
     console.log(file)
 }
 
