@@ -1,4 +1,4 @@
-# untitled-game
+# The Expanse
 casual 2d rpg game demo
 
 on github for friends
