@@ -22,19 +22,22 @@ space - interact with tile
 
 
 
-## Recent Changelog vA.0.0.7:
+## Recent Changelog vA.0.0.8:
+
+added background ost
+
+added basic localStorage saving
+
+- 3 save files
+- saves player inventory
+
+### Previous Changelog vA.0.0.7:
 
 added startup screen
 
 added abilty to move around items in inventory
 
 changed amount of reosurces dropped from trees & rocks
-
-### Previous Changelog vA.0.0.6:
-
-updated name
-
-added hotbar aamount numbers
 
 
 
