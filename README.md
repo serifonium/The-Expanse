@@ -22,26 +22,19 @@ space - interact with tile
 
 
 
-## Recent Changelog vA.0.0.5:
+## Recent Changelog vA.0.0.7:
 
-updated loading screen
+added startup screen
 
--  added loading bar
--  more loading messages
--  any loading message suggestions should be sent in a pull request
+added abilty to move around items in inventory
 
-that's it
-<br>
-leave
+changed amount of reosurces dropped from trees & rocks
 
-### Previous Changelog vA.0.0.4:
+### Previous Changelog vA.0.0.6:
 
-removed symbols at the bottom
+updated name
 
-mining rocks now gives you stone
+added hotbar aamount numbers
 
-chopping trees now gives you wood
-
-items show in inventory
 
 
