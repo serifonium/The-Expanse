@@ -22,17 +22,15 @@ space - interact with tile
 
 
 
-## Recent Changelog vA.0.0.3:
-added rough loading screen (temporarily removed)
+## Recent Changelog vA.0.0.4:
 
-added non-funtional inventory framework
+removed symbols at the bottom
 
-updated map
+mining rocks now gives you stone
 
-added rocks
+chopping trees now gives you wood
 
-added ability to break rocks with pickaxe (#3)
+items show in inventory
 
-changed order of items
 
 
