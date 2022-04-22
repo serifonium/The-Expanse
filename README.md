@@ -28,6 +28,8 @@ added startup screen
 
 added abilty to move around items in inventory
 
+changed amount of reosurces dropped from trees & rocks
+
 ### Previous Changelog vA.0.0.6:
 
 updated name
