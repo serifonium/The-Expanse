@@ -48,13 +48,14 @@ function setupWorld() {
     
     
     maps.push(mapUnString("3015cccccccccccddddccbbbbbbbbdddddcbbbbbbbbbdddddccbbbbbbbbbddddccbbbbbbbbbddddcbbbbbbbbbbbdddcbbbbbbbbbbbdddcbbbbbbbbbbbdddcbbbbbbbbbbbbddccbbbbbbbbbbbddccbbbbbbbbbbbbdcbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbccccbbbbbbbbbbbbcccbbbbbbbbbbccccccbbbbbbbccccccccbbbbbbbccccccccbbbbbbbbcccccccbbbbbbbbbbcccccbbbbbbbbbbccccccbbbbbbbbbbcccccbbbbbbbbbbccccccbbbbbbbbcccccccccbbbbbccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaabaaaaaaaaaabaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaabaaaabaaaaaaaaaaaabaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaacaaaaaaaaaabaaaaaaaaaaaaaaacacaaaaaaaaacaaaaaaaaaaaaaaacaacaacaaaaaacaaaaccacaaaaaaaaaacaacacaaaaaaacaacacccaaaaaaaaacaaacaaaaaaaaaaaaccaaaaaaaaaaaaaaaaaaa"))
+    maps[0].name = "Starting Room"
     maps[0].grid[3][7].decor = ""
     //tpHitbox(20, 12, 1, 1, universe[0].planets[1].rooms[0], "Hz-892 Landing", "IceCliffside1")
 
     for(let y = 0; y < 15; y++) {
         for(let x = 0; x < 30; x++) {
             maps[0].grid[x][y].light = 0.92
-            if(maps[0].grid[x][y].type === "ice" || maps[0].type === "water1") {
+            if(maps[0].grid[x][y].type === "ice" || maps[0].grid[x][y].type === "water1") {
                 maps[0].grid[x][y].tags.collisionDetection = true
             } 
             if(maps[0].grid[x][y].decor === "borealTree1") {

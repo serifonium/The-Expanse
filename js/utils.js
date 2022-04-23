@@ -407,8 +407,11 @@ function drawIMG(img, x, y, id, place) {
     
     let node = document.createTextNode(text);
     let body = document.getElementById(place);
+
+    
     
     textbox.appendChild(node);
+    textbox.style.unselectable="on"
     body.appendChild(textbox);
 
 } function playSFX(sfx, onEnd) {
