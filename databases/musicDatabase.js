@@ -1,4 +1,4 @@
 
 var musicTracks = [
-    {name: "Crystal Wind", link: "../sfx/CrystalWind.mp3", time: 128}
+    {name: "Crystal Wind", link: "./sfx/CrystalWind.mp3", time: 128}
 ]
