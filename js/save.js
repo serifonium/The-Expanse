@@ -91,7 +91,7 @@ new Button(window.innerWidth / 2 - 320 / 2 - 8 + 128 + 2, window.innerHeight / 5
             if (localStorage.getItem("save" + i) === null) {
                 ctx.fillStyle = "#000000"
                 ctx.font = "32px Arial";
-                ctx.fillText("New File", window.innerWidth / 2 - 0 / 2 + 56, window.innerHeight / 5 + 40 + i * 200)
+                ctx.fillText("New File", window.innerWidth / 2 - 0 / 2 + 0, window.innerHeight / 5 + 40 + i * 200)
             } else {
                 ctx.textAlign = "center";
                 ctx.font = "32px Arial";
