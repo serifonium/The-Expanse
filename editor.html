@@ -1,14 +1,12 @@
-
-    
-    
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor</title>
 </head>
+
 <body>
     <canvas id="myCanvas" width="1280" height="960" style="border:1px solid #000000;"></canvas>
 
@@ -20,9 +18,9 @@
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
 
-        var map = new Map(45, 20, "map")
-        for(let x in map.grid) {
-            for(let y in map.grid[x]) {
+        var map = new Map(30, 15, "map")
+        for (let x in map.grid) {
+            for (let y in map.grid[x]) {
                 map.grid[x][y].type = "void"
             }
         }
@@ -36,23 +34,23 @@
             tile.type = type
             check(tile)
             function check(sTile) {
-                if(sTile.up !== undefined) {
-                    if(sTile.up.type === tileType) {
+                if (sTile.up !== undefined) {
+                    if (sTile.up.type === tileType) {
                         sTile.up.type = type
                         check(sTile.up)
                     }
-                } if(sTile.left !== undefined) {
-                    if(sTile.left.type === tileType) {
+                } if (sTile.left !== undefined) {
+                    if (sTile.left.type === tileType) {
                         sTile.left.type = type
                         check(sTile.left)
                     }
-                } if(sTile.down !== undefined) {
-                    if(sTile.down.type === tileType) {
+                } if (sTile.down !== undefined) {
+                    if (sTile.down.type === tileType) {
                         sTile.down.type = type
                         check(sTile.down)
                     }
-                } if(sTile.right !== undefined) {
-                    if(sTile.right.type === tileType) {
+                } if (sTile.right !== undefined) {
+                    if (sTile.right.type === tileType) {
                         sTile.right.type = type
                         check(sTile.right)
                     }
@@ -60,13 +58,13 @@
             }
         }
 
-        canvas.addEventListener('mousedown', function(e) {
+        canvas.addEventListener('mousedown', function (e) {
             getCursorPosition(canvas, e)
         })
-        canvas.addEventListener('mouseup', function(e) {
+        canvas.addEventListener('mouseup', function (e) {
             getCursorPos(canvas, e)
         })
-        canvas.addEventListener('mousemove', function(e) {
+        canvas.addEventListener('mousemove', function (e) {
             getMousePost(canvas, e)
         })
         var mx = null
@@ -79,27 +77,27 @@
             mx = mx_ - 2
             my = my_
             drawing = true
-            for(let x in map.grid) {
-                for(let y in map.grid[x]) {
-                    if(mx > x*16 && mx < x*16+17 && my > y*16 && my < y*16+17) {
-                        
-                        if(selected !== "") {
+            for (let x in map.grid) {
+                for (let y in map.grid[x]) {
+                    if (mx > x * 16 && mx < x * 16 + 17 && my > y * 16 && my < y * 16 + 17) {
+
+                        if (selected !== "") {
                             if (fill === false) {
                                 map.grid[x][y].type = selected
                             } else if (fill === true) {
                                 fillAreaEditor(x, y, selected)
                             }
                         }
-                        if(selectedDecor === "del") {
+                        if (selectedDecor === "del") {
                             if (fill === false) {
                                 map.grid[x][y].decor = ""
-                            } 
-                        } else if(selectedDecor !== "") {
+                            }
+                        } else if (selectedDecor !== "") {
                             if (fill === false) {
                                 map.grid[x][y].decor = selectedDecor
                             }
-                        } 
-                        
+                        }
+
                         //console.log(map.grid[x][y])
                     }
                 }
@@ -121,26 +119,26 @@
             //console.log(mx_, my_)
             mx = mx_ - 2
             my = my_
-            if(drawing === true) {
-                for(let x in map.grid) {
-                    for(let y in map.grid[x]) {
-                        if(mx > x*16 && mx < x*16+17 && my > y*16 && my < y*16+17) {
-                            
-                            if(selected !== "") {
+            if (drawing === true) {
+                for (let x in map.grid) {
+                    for (let y in map.grid[x]) {
+                        if (mx > x * 16 && mx < x * 16 + 17 && my > y * 16 && my < y * 16 + 17) {
+
+                            if (selected !== "") {
                                 if (fill === false) {
                                     map.grid[x][y].type = selected
-                                } 
+                                }
                             }
-                            if(selectedDecor === "del") {
+                            if (selectedDecor === "del") {
                                 if (fill === false) {
                                     map.grid[x][y].decor = ""
-                                } 
-                            } else if(selectedDecor !== "") {
+                                }
+                            } else if (selectedDecor !== "") {
                                 if (fill === false) {
                                     map.grid[x][y].decor = selectedDecor
                                 }
-                            } 
-                            
+                            }
+
                             //console.log(map.grid[x][y])
                         }
                     }
@@ -148,62 +146,62 @@
             }
             render()
         }
-        
+
         render()
         function render() {
             ctx.fillStyle = "#000000"
-            ctx.fillRect(0, 0, 16*map.width, 16*map.height)
-            for(let x in map.grid) {
-                for(let y in map.grid[x]) {
+            ctx.fillRect(0, 0, 16 * map.width, 16 * map.height)
+            for (let x in map.grid) {
+                for (let y in map.grid[x]) {
                     let tile = map.grid[x][y]
-                    if(tile.type === "snow") {
-                        ctx.fillStyle = "#eeeeee" 
-                    } else if(tile.type === "ice") {
-                        ctx.fillStyle = "#37bfb2" 
-                    } else if(tile.type === "water1") {
-                        ctx.fillStyle = "#2260bd" 
+                    if (tile.type === "snow") {
+                        ctx.fillStyle = "#eeeeee"
+                    } else if (tile.type === "ice") {
+                        ctx.fillStyle = "#37bfb2"
+                    } else if (tile.type === "water1") {
+                        ctx.fillStyle = "#2260bd"
                     } else {
                         ctx.fillStyle = "#000000"
                     }
-                    ctx.fillRect(16*x, 16*y, 15, 15)
-                    if(tile.decor === "borealTree1") {
-                        ctx.fillStyle = "#5c3a23" 
-                        ctx.fillRect(16*x+4, 16*y+4, 7, 7)
-                    } else if(tile.decor === "rock") {
-                        ctx.fillStyle = "#666666" 
-                        ctx.fillRect(16*x+4, 16*y+4, 7, 7)
+                    ctx.fillRect(16 * x, 16 * y, 15, 15)
+                    if (tile.decor === "borealTree1") {
+                        ctx.fillStyle = "#5c3a23"
+                        ctx.fillRect(16 * x + 4, 16 * y + 4, 7, 7)
+                    } else if (tile.decor === "rock") {
+                        ctx.fillStyle = "#666666"
+                        ctx.fillRect(16 * x + 4, 16 * y + 4, 7, 7)
                     } else {
                         ctx.fillStyle = "#000000"
                     }
-                    
+
                 }
             }
         }
         document.addEventListener('keydown', logKey);
         document.addEventListener('keyup', logDown);
         function logKey(e) {
-            if(e.key === "1") {
+            if (e.key === "1") {
                 selected = "snow"
                 selectedDecor = ""
-            } if(e.key === "2") {
+            } if (e.key === "2") {
                 selected = "ice"
                 selectedDecor = ""
-            } if(e.key === "3") {
+            } if (e.key === "3") {
                 selected = "water1"
                 selectedDecor = ""
-            } if(e.key === "8") {
+            } if (e.key === "8") {
                 selected = ""
                 selectedDecor = "rock"
-            } if(e.key === "9") {
+            } if (e.key === "9") {
                 selected = ""
                 selectedDecor = "borealTree1"
-            } if(e.key === "0") {
+            } if (e.key === "0") {
                 selected = "void"
                 selectedDecor = "del"
             }
-            if(e.key === "e") {
+            if (e.key === "e") {
                 console.log(mapString())
-            } if(e.key === "q") {
+            } if (e.key === "q") {
                 if (fill === true) {
                     fill = false
                 } else if (fill === false) {
@@ -214,43 +212,43 @@
 
         function mapString() {
             let string = String(map.width + "" + map.height)
-            for(let x in map.grid) {
-                for(let y in map.grid[x]) {
+            for (let x in map.grid) {
+                for (let y in map.grid[x]) {
                     let tile = map.grid[x][y]
-                    if(tile.type === "void") {
+                    if (tile.type === "void") {
                         string = string + "a"
-                    } else if(tile.type === "snow") {
+                    } else if (tile.type === "snow") {
                         string = string + "b"
-                    } else if(tile.type === "ice") {
+                    } else if (tile.type === "ice") {
                         string = string + "c"
-                    } else if(tile.type === "water1") {
+                    } else if (tile.type === "water1") {
                         string = string + "d"
                     }
 
-                    
+
                 }
             }
-            for(let x in map.grid) {
-                for(let y in map.grid[x]) {
+            for (let x in map.grid) {
+                for (let y in map.grid[x]) {
                     let tile = map.grid[x][y]
-                    if(tile.decor === "") {
+                    if (tile.decor === "") {
                         string = string + "a"
-                    } else if(tile.decor === "borealTree1") {
+                    } else if (tile.decor === "borealTree1") {
                         string = string + "b"
-                    } else if(tile.decor === "rock") {
+                    } else if (tile.decor === "rock") {
                         string = string + "c"
                     }
 
-                    
+
                 }
             }
-            
+
             return String(string)
         }
     </script>
     <p id="mapLink"></p>
 
-    
-</body>
-</html>
 
+</body>
+
+</html>
