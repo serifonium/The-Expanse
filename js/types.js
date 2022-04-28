@@ -1,85 +1,5 @@
-class Tile {
-    constructor(x, y) {
-        this.type = "space"
-        this.decor = ""
-        this.pos = {x: x, y: y}
-        this.onPlayerInteractActive = false
-        this.onPlayerInteractRender = function() {}
-        this.tags = {collisionDetection: false,
-        canGrowTrees: false}
-        this.hitbox = null
-        this.light = 1
-    }
-    update() {
-        if (this.onPlayerInteractActive === true) {
-            this.onPlayerInteractRender()
-        }
-        /*
-        if(player.tx === this.pos.x && player.ty === this.pos.y) {
-            this.light = 1
-        } else {
-            this.light = 0.7
-        }
-        */
-    } 
-    orientate(map) {
-        if(this.pos.y - 1 >= 0) {
-            map.grid[this.pos.x][this.pos.y].up = map.grid[this.pos.x][this.pos.y - 1]
-        } else {map.grid[this.pos.x][this.pos.y].up = undefined}
-        if(this.pos.x + 1 < map.width) {
-            map.grid[this.pos.x][this.pos.y].right = map.grid[this.pos.x + 1][this.pos.y]
-        } else {map.grid[this.pos.x][this.pos.y].right = undefined}
-        if(this.pos.y + 1 < map.height) {
-            map.grid[this.pos.x][this.pos.y].down = map.grid[this.pos.x][this.pos.y + 1]
-        } else {map.grid[this.pos.x][this.pos.y].down = undefined}
-        if(this.pos.x - 1 >= 0) {
-            map.grid[this.pos.x][this.pos.y].left = map.grid[this.pos.x - 1][this.pos.y]
-        } else {map.grid[this.pos.x][this.pos.y].left = undefined}
-    }
-    toSerializable(){
-        return {
-            type: this.type,
-            decor: this.decor,
-            pos: this.pos,
-            tags: this.tags,
-            
-        } 
-    }
-}
-class Map {
-    constructor(w, h, name) {
-        this.name = name
-        this.height = h
-        this.width = w
-        this.grid = []
-        this.hitboxes = []
-        this.timeSinceLastVisit = 0
-        for (let a = 0; a !== w; a++) {
-            this.grid[a] = []
-            for (let b = 0; b !== h; b++) {
-                this.grid[a].push(new Tile(a, b))
-            }
-        } for (let a = 0; a !== w; a++) {
-            for (let b = 0; b !== h; b++) {
-                this.grid[a][b].orientate(this)
-            }
-        }
-        this.building = false
-    }
-    update() {
-        this.timeSinceLastVisit += 0.02
-    }
-    toSerializable(){
-        return {
-            name: this.name,
-            height: this.height,
-            width: this.width,
-            grid: this.grid.map(g => g.map(t => t.toSerializable())),
-            hitboxes: this.hitboxes.map(h => h.toSerializable()),
-            building: this.building
-        } 
-    }
-}
+
+
 class Player {
     constructor(name, x, y, map) {
         this.name = name
@@ -108,6 +28,14 @@ class Player {
         this.balance = 40
         this.health = 20
         this.maxHealth = 20
+
+        this.avatar = {
+            hairColour: "#08196e",
+            eyeColour: "#ff6254",
+            skinColour: "#e09089",
+            shirtColour: "#77f255",
+            leggingsColour: "#37961d"
+        }
         this.skills = {
             combat: {
                 level: 0,
@@ -154,7 +82,29 @@ class Player {
         ]
 
         this.textbox = new Interface("textbox")
-        this.inventory = new Interface("inventory")
+        this.inventory = new Interface("inventory", [], function() {
+            let xOffset = (window.innerWidth-64*13)/2 -0
+            let yOffset = (window.innerHeight-64*7)/2 -0
+
+            ctx.globalAlpha = 0.5
+            ctx.fillStyle = "#000000"
+            ctx.fillRect(0, 0, window.innerWidth, window.innerHeight) 
+            ctx.globalAlpha = 1
+            ctx.fillStyle = "#6b6b6b"
+            ctx.fillRect(xOffset-8, yOffset-8, 64*13+16, 64*7+16) 
+            ctx.fillStyle = "#dddddd"
+            ctx.fillRect(xOffset, yOffset, 64*13, 64*7) 
+            for(let x = 0; x < 13; x++) {
+                for(let y = 0; y < 2; y++) {
+                    if(x < 5 && y === 0) {
+                        ctx.drawImage(imgCache.slot2, xOffset+x*64, yOffset+y*64-1)
+                    } else {
+                        ctx.drawImage(imgCache.slot1, xOffset+x*64, yOffset+y*64-1)
+                    }
+                    
+                }
+            }
+        })
         this.inventory.tab = 0
         this.inventory.itemSelected = undefined
         this.inventory.itemSelectedSource = undefined
@@ -212,7 +162,8 @@ class Player {
         
         this.personalOptions = {
             highlightInteract: true,
-            hitboxesHighlighted: true
+            hitboxesHighlighted: true,
+            musicVolume: 0.5
         }
 
         if(this.rotation === 0) {
@@ -377,14 +328,22 @@ class Hitbox {
 
 
 class Interface {
-    constructor(name) {
+    constructor(name, buttons, render) {
         this.name = name
         if(name === null) {
             this.name = ""
         }
-        this.render = function() {}
+        this.render = render
         this.mode = 0
-        this.open = false
+        this.open = open
+        this.buttons = buttons
+
+    } 
+    close() {
+        player.interfaceOpen = undefined
+        for(let b of this.buttons) {
+            b.active = false
+        }
     }
 }
 
@@ -404,11 +363,11 @@ class Item {
             this.amount = amount
         } 
         if(name === "Wood") {
-            this.texture = "images/items/wood.png"
+            this.texture = imgCache.wood
         } else if (name === "Stone") {
-            this.texture = "images/items/stone.png"
+            this.texture = imgCache.stone
         } else if (name === "Fractured Sword") {
-            this.texture = "images/items/fracturedSword.png"
+            this.texture = imgCache.fracturedSword
             this.attack = 3
             this.speed = 1.1
             this.desc = [
@@ -417,11 +376,11 @@ class Item {
             ]
             //console.log(this)
         } else if (name === "Fractured Pickaxe") {
-            this.texture = "images/items/fracturedPickaxe.png"
+            this.texture = imgCache.fracturedPickaxe
         } else if (name === "Fractured Axe") {
-            this.texture = "images/items/fracturedAxe.png"
+            this.texture = imgCache.fracturedAxe
         } else if (name === "Basic Fishing Pole") {
-            this.texture = "images/items/Basic Fishing Pole.png"
+            this.texture = imgCache.basicFishingPole
         } else {
             this.texture = undefined
         }
@@ -559,5 +518,50 @@ class Item {
 } class Shop {
     constructor(trades) {
         this.trades = trades
+    }
+}
+
+
+
+class ToggleableButton {
+    constructor(x, y, w, h, active, callback) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+
+        this.active = active;
+        this.toggle = false;
+        let that = this;
+
+        document.addEventListener("mousedown", function(e) {
+            if(overlapping(that.x, that.y, that.w, that.h, e.clientX, e.clientY, 1, 1) === true) {
+                
+                if(that.active === true) {
+                    that.toggle = !that.toggle;
+                    callback(that)
+                }
+            }
+            
+        })
+    }
+} class Button {
+    constructor(x, y, w, h, active, callback) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+
+        this.active = active;
+        let that = this;
+        document.addEventListener("mousedown", function(e) {
+            if(overlapping(that.x, that.y, that.w, that.h, e.clientX, e.clientY, 1, 1) === true) {
+                
+                if(that.active === true) {
+                    callback(that)
+                }
+            }
+            
+        })
     }
 }

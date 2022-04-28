@@ -13,35 +13,39 @@
     
 </head>
 <body id="body">
-    <div id="game"> <!-- div with all map components -->
+    
+    <!--
+    <div id="game">
         
 
     </div>
-    <div id="light"> <!-- div with all map light tiles -->
+    <div id="light">
 
     </div>
+    -->
 
-    <script src="databases/itemDatabase.js"></script>
-    <script src="databases/loadingText.js"></script>
-    <script src="databases/musicDatabase.js"></script>
-    <script src="js/utils.js"></script>
+    <!--
+    
+    
     <script src="js/playMusic.js"></script>
-    <script src="js/types.js"></script>
-    <script src="js/render.js"></script>
+    
+    
+    
     <script src="js/save.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/controls.js"></script>
-    <script src="js/update.js"></script>
+    
+    
+    -->
     
 
-    <div id="UI"> <!-- div with all ui -->
+    <!--
+    <div id="UI"> 
         
         
     </div>
 
     
 
-    <div id="interface" > <!-- div with all interfaces -->
+    <div id="interface" > 
         <script>
             drawRECT(0, 0, window.innerWidth, window.innerHeight, "#000000", "darkBackground", "interface")
             document.getElementById("darkBackground").style.opacity = 0.5
@@ -53,34 +57,81 @@
                 document.getElementById("inventory").hidden = true
                 let xOffset = (window.innerWidth-64*13)/2 -0
                 let yOffset = (window.innerHeight-64*7)/2 -0
+                
                 drawRECT(xOffset-8,yOffset-8,64*13+16, 64*7+16, "#6b6b6b", "outerInventoryBackground", "inventory")
-                drawRECT(xOffset,yOffset,64*13, 64*7, "#dddddd", "innerInventoryBackground", "inventory")
+                for(let i = 0; i < 5; i++) {
+                    drawIMG("images/interfaceTab.png",i*64, -64, "InventoryTab"+String(i), "outerInventoryBackground")
+                }
+                drawIMG("./images/inventorySymbol.png",0*64, -64, "InventoryTab0Image", "outerInventoryBackground")
+                drawIMG("./images/settingsSymbol.png",4*64, -64, "InventoryTab4Image", "outerInventoryBackground")
+                for(let i = 0; i < 5; i++) {
+                    drawRECT(xOffset,yOffset,64*13, 64*7, "#dddddd", "inventoryBackground"+i, "inventory")
+                }
+                
                 for(let i = 1; i < 14; i++) {
                     for(let y = 1; y < 3; y++) {
                         if(i < 6 && y === 1) {
-                            drawIMG("./images/slot2.png",xOffset+i*64-64, yOffset+y*64-64, "slot"+String((i-1)+((y-1)*13)), "inventory")
+                            drawIMG("./images/slot2.png",i*64-64, y*64-64, "slot"+String((i-1)+((y-1)*13)), "inventoryBackground0")
                         } else{
-                            drawIMG("./images/slot1.png",xOffset+i*64-64, yOffset+y*64-64, "slot"+String((i-1)+((y-1)*13)), "inventory")
+                            drawIMG("./images/slot1.png",i*64-64, y*64-64, "slot"+String((i-1)+((y-1)*13)), "inventoryBackground0")
                         }
                         
                         if(player.inventory.items[(i-1)+((y-1)*13)] === null) {
-                            drawIMG("./images/empty.png",xOffset+i*64-64, yOffset+y*64-64, "slot"+String((i-1)+((y-1)*13))+"item", "inventory")
+                            drawIMG("./images/empty.png",i*64-64, y*64-64, "slot"+String((i-1)+((y-1)*13))+"item", "inventoryBackground0")
                         } else {
                             
-                            drawIMG(player.inventory.items[(i-1)+((y-1)*13)].texture,xOffset+i*64-64, yOffset+y*64-64, "slot"+String((i-1)+((y-1)*13))+"item", "inventory")
+                            drawIMG(player.inventory.items[(i-1)+((y-1)*13)].texture,i*64-64, y*64-64, "slot"+String((i-1)+((y-1)*13))+"item", "inventoryBackground0")
                         }
-                        drawTEXT(xOffset+i*64-18, yOffset+y*64-38, "", "p", "slot"+String((i-1)+((y-1)*13))+"amount", "inventory")
+                        drawTEXT(i*64-24, y*64-38, "", "p", "slot"+String((i-1)+((y-1)*13))+"amount", "inventoryBackground0")
                     }
-                }
+                } 
                 //function log() {drawIMG(player.inventory.items[0].texture, 0, 0, "item", "hover")}
                 //document.getElementById("slot0item").onclick=log;
-                drawRECT(xOffset+1*64,yOffset+64*2,2*64, 3*64, "#6b6b6b", "outerPlayerBackground", "inventory")
-                drawRECT(xOffset+1*64+4,yOffset+64*2+4,2*64-8, 3*64-8, "#dddddd", "innerPlayerBackground", "inventory")
-                drawRECT(xOffset+0*64,yOffset+64*5,4*64, 1*64, "#6b6b6b", "outerPlayerNameBackground", "inventory")
-                drawRECT(xOffset+0*64+4,yOffset+64*5+4,4*64-8, 1*64-8, "#dddddd", "innerPlayerNameBackground", "inventory")
+                drawRECT(1*64,64*2,2*64, 3*64, "#6b6b6b", "outerPlayerBackground", "inventoryBackground0")
+                drawRECT(1*64+4,64*2+4,2*64-8, 3*64-8, "#dddddd", "innerPlayerBackground", "inventoryBackground0")
+                drawRECT(0*64,64*5,4*64, 1*64, "#6b6b6b", "outerPlayerNameBackground", "inventoryBackground0")
+                drawRECT(0*64+4,64*5+4,4*64-8, 1*64-8, "#dddddd", "innerPlayerNameBackground", "inventoryBackground0")
                 drawTEXT(0, -16, player.name, "h1", "playerName", "innerPlayerNameBackground", true)
                 document.getElementById("playerName").style.textAlign = "center";
                 //console.log("yuus")
+
+                for(let i = 0; i < 5; i++) {
+                    drawIMG("images/emptyTickSlot.png", 0, 64*i, "SettingSlot"+String(i), "inventoryBackground4")
+                }
+                drawTEXT(80, 0*64+20, "Highlight Interact Boxes", "h", "SettingText0", "inventoryBackground4")
+                drawTEXT(80, 1*64+20, "Highlight Hitboxes", "h", "SettingText1", "inventoryBackground4")
+
+
+                drawTEXT(80+5*64, 0*64+20, "Music", "b", "SettingText0", "inventoryBackground4")
+                drawIMG("images/plus.png",7*64, 0*64, "increaseMusic", "inventoryBackground4")
+                drawIMG("images/minus.png",8*64, 0*64, "decreaseMusic", "inventoryBackground4")
+                let settingButtons = {}
+                Setting0 = new ToggleableButton(xOffset, yOffset + 64*0, 64, 64, false, (e) => {
+                    if(e.toggle) {
+                        player.personalOptions.hitboxesHighlighted = true
+                        document.getElementById("SettingSlot0").src = "images/tickSlot.png"
+                    } else {
+                        player.personalOptions.hitboxesHighlighted = false
+                        document.getElementById("SettingSlot0").src = "images/emptyTickSlot.png"
+                    }
+                })
+                Setting1 = new ToggleableButton(xOffset, yOffset + 64*1, 64, 64, false, (e) => {
+                    if(e.toggle) {
+                        player.personalOptions.highlightInteract = true
+                        document.getElementById("SettingSlot1").src = "images/tickSlot.png"
+                    } else {
+                        player.personalOptions.highlightInteract = false
+                        document.getElementById("SettingSlot1").src = "images/emptyTickSlot.png"
+                    }
+                })
+                settingButtons.increaseMusic = new Button(7*64, 0, 64, 64, true, (e) => {
+                    if(player.personalOptions.musicVolume < 0.9) {
+                        player.personalOptions.musicVolume += 0.1
+                        console.log("yeup")
+                    }
+                })
+
+
             </script>
         </div>
     </div>
@@ -122,6 +173,8 @@
             document.getElementById("loadingTitle").style.textAlign = "center";
             document.getElementById("loadingTitle").style.fontSize = "60px"
     
+
+            
         </script>
     </div>
     
@@ -195,6 +248,28 @@
     <div onLoad="removeLoadingScreen()">
 
     </div>
+    -->
+    <canvas id="myCanvas"></canvas>
+    <script>
+        
+    </script>
+
+
+
+    <script src="databases/itemDatabase.js"></script>
+    <script src="databases/loadingText.js"></script>
+    <script src="databases/musicDatabase.js"></script>
+    <script src="databases/imgCache.js"></script>
+
+    <script src="js/playerRender.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/types.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/update.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/save.js"></script>
 </body>
 </html>
 

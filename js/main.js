@@ -120,7 +120,7 @@ setupWorld()
 
 
 
-    player = new Player("player", 128, 320, maps[0])
+var player = new Player("player", 128, 320, maps[0])
     
 
 
@@ -141,7 +141,7 @@ player.inventory.items[0] = new Item("Fractured Sword", "Sword")
 player.inventory.items[1] = new Item("Fractured Axe", "Axe")
 player.inventory.items[3] = new Item("Basic Fishing Pole", "Fishing Rod")
 player.inventory.items[2] = new Item("Fractured Pickaxe", "Pickaxe")
-player.inventory.items[3].interface = new Interface("Fishing")
+//player.inventory.items[3].interface = new Interface("Fishing")
 
 let p = particleSetup()
 let sp = spaceWarpSetup()
@@ -149,9 +149,11 @@ let sp = spaceWarpSetup()
 //player.inventory.items[0].texture = fracturedSword
 
 setInterval(() => {
+    /*
     if(save !== undefined) {
         saveGame(save)
     }
+    */
     
 }, 0.02*1000);
 

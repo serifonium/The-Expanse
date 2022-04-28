@@ -1,3 +1,4 @@
+/*
 function drawText(text, x_, y_, maxLineLength, colour, central) {
     function cube(x1, y1) {
         ctx.fillRect(x1*4 + x, y1*4 + y, 4, 4)
@@ -237,6 +238,10 @@ function drawText(text, x_, y_, maxLineLength, colour, central) {
         
     }
 }
+*/
+
+
+
 
 function drawTextBox(text, colour) {
     player.textbox.fulltext = text
@@ -416,13 +421,14 @@ function drawIMG(img, x, y, id, place) {
 
 } function playSFX(sfx, onEnd) {
     let audio = new Audio(sfx);
+    audio.volume = player.personalOptions.musicVolume
     if (onEnd){
         audio.onended = () => {
             onEnd();
         }
     }
     audio.play();
-    console.log("played")
+    //console.log("played")
 }
 function findTileId(x, y, add) {
     return document.getElementById(String(Number(x)+(Number(y)*player.map.width))+add)

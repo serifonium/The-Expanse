@@ -6,6 +6,7 @@ function logKey(e) {
         if(player.canMove) {
             player.vy = -player.speed
             player.rotation = 0
+            console.log(player.vy)
         }
     } if(e.key === "a") {
         if(player.canMove) {
@@ -33,7 +34,6 @@ function logKey(e) {
                     player.interactTile.decor = ""
                     player.interactTile.tags.collisionDetection = false
                     inventoryAdd(new Item("Wood", "Resource", Math.floor(Math.random()*5+5)))
-                    document.getElementById(String(player.interactTile.pos.x + (player.interactTile.pos.y * player.map.width)) + " borealTree1").remove()
                 }
             }
         } else if(player.inventory.items[player.itemSelected].name === "Fractured Pickaxe") {
@@ -44,7 +44,6 @@ function logKey(e) {
                     player.interactTile.decor = ""
                     player.interactTile.tags.collisionDetection = false
                     inventoryAdd(new Item("Stone", "Resource", Math.floor(Math.random()*2+1)))
-                    document.getElementById(String(player.interactTile.pos.x + (player.interactTile.pos.y * player.map.width)) + " rock").remove()
                 }
             }
         }
@@ -70,37 +69,33 @@ function logKey(e) {
     } if(e.key === "1") {
         if(player.interfaceOpen === undefined) {
             player.itemSelected = 0
-            hotbarRender()
         } else if (player.interfaceOpen.name === "inventory") {
             player.interfaceOpen.tab = 0
         }
     } if(e.key === "2") {
         if(player.interfaceOpen === undefined) {
             player.itemSelected = 1
-            hotbarRender()
         } else if (player.interfaceOpen.name === "inventory") {
             player.interfaceOpen.tab = 1
         }
     } if(e.key === "3") {
         if(player.interfaceOpen === undefined) {
             player.itemSelected = 2
-            hotbarRender()
         } else if (player.interfaceOpen.name === "inventory") {
             player.interfaceOpen.tab = 2
         }
     } if(e.key === "4") {
         if(player.interfaceOpen === undefined) {
             player.itemSelected = 3
-            hotbarRender()
         } else if (player.interfaceOpen.name === "inventory") {
             player.interfaceOpen.tab = 3
         }
     } if(e.key === "5") {
         if(player.interfaceOpen === undefined) {
             player.itemSelected = 4
-            hotbarRender()
         } else if (player.interfaceOpen.name === "inventory") {
             player.interfaceOpen.tab = 4
+            
         }
     }
     if(e.key === "e") {
@@ -135,6 +130,7 @@ function getMouseClick(event) {
     clickX = mx_
     clickY = my_
     console.log(clickX, clickY)
+    /*
 
     if(player.interfaceOpen !== undefined) {
         if(player.interfaceOpen.name === "inventory") {
@@ -176,6 +172,7 @@ function getMouseClick(event) {
             clickY = null
         }
     }
+    */
 }
 
 document.addEventListener('mousemove', function(e) {
@@ -188,6 +185,6 @@ function getMousePos(event) {
     var my_ = event.clientY
     hx = mx_
     hy = my_
-    document.getElementById("hover").style.left = String(hx) + "px"
-    document.getElementById("hover").style.top = String(hy) + "px"
+    //document.getElementById("hover").style.left = String(hx) + "px"
+    //document.getElementById("hover").style.top = String(hy) + "px"
 }

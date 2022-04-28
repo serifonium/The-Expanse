@@ -1,10 +1,6 @@
 function update() {
+    /*
     
-    if(player.map.grid[Math.floor((player.x + player.vx + 32)/64)][Math.floor((player.y + 32) /64)].tags.collisionDetection === false) {
-        player.x = player.x + player.vx
-    } if(player.map.grid[Math.floor((player.x + 32)/64)][Math.floor((player.y + player.vy + 32) /64)].tags.collisionDetection === false) {
-        player.y = player.y + player.vy
-    } 
     for (let x in player.map.grid) {
         for (let y in player.map.grid[x]) {
             tile = player.map.grid[x][y]
@@ -66,7 +62,7 @@ function update() {
         }
     }
     //findTileId(player.tx, player.ty, "light").style.opacity = 0
-    /*
+    
     if(player.map.grid[player.tx][player.ty].left !== undefined) {findTileId(player.tx-1, player.ty, "light").style.opacity = (1-player.map.grid[player.tx][player.ty].left.light)/80*findPythDistance(player.x, player.y, (player.tx-1)*64+32, (player.ty)*64+32)
         if(player.map.grid[player.tx][player.ty].left.up !== undefined) {findTileId(player.tx-1, player.ty-1, "light").style.opacity = (1-player.map.grid[player.tx][player.ty].left.up.light)/2}
         if(player.map.grid[player.tx][player.ty].left.down !== undefined) {findTileId(player.tx-1, player.ty+1, "light").style.opacity = (1-player.map.grid[player.tx][player.ty].left.down.light)/2}
@@ -77,7 +73,7 @@ function update() {
     }
     if(player.map.grid[player.tx][player.ty].up !== undefined) {findTileId(player.tx, player.ty-1, "light").style.opacity = (1-player.map.grid[player.tx][player.ty].up.light)/2}
     if(player.map.grid[player.tx][player.ty].down !== undefined) {findTileId(player.tx, player.ty+1, "light").style.opacity = (1-player.map.grid[player.tx][player.ty].down.light)/2}
-    */
+    
     player.update()
     if (player.interfaceOpen !== undefined && player.interfaceOpen !== null ) {
         player.canMove = false
@@ -116,9 +112,64 @@ function update() {
         }
     }
 
-
+    Setting0.active = false
+    Setting1.active = false
     if (player.interfaceOpen !== undefined) {
-        
+        if(player.interfaceOpen.name === "inventory") {
+            for(let i = 0; i < 5; i++) {
+                if(player.inventory.tab === i) {
+                    document.getElementById("InventoryTab"+i).style.top = "-60px"
+                    document.getElementById("inventoryBackground"+i).hidden = false
+                    
+                } else {
+                    document.getElementById("InventoryTab"+i).style.top = "-64px"
+                    document.getElementById("inventoryBackground"+i).hidden = true
+                }
+            } if (player.inventory.tab === 4) {
+                Setting0.active = true
+                Setting1.active = true
+            }
+            
+        }
+    }
+    */
+    if(player.map.grid[Math.floor((player.x + player.vx + 32)/64)][Math.floor((player.y + 32) /64)].tags.collisionDetection === false) {
+        player.x = player.x + player.vx
+    } if(player.map.grid[Math.floor((player.x + 32)/64)][Math.floor((player.y + player.vy + 32) /64)].tags.collisionDetection === false) {
+        player.y = player.y + player.vy
+    } 
+    player.update()
+    for (let x in player.map.grid) {
+        for (let y in player.map.grid[x]) {
+            tile = player.map.grid[x][y]
+            tile.update()
+            if(player.map.grid[x][y].decor === "borealTree1") {
+                if(player.map.grid[x][y].cooldown > 0) {
+                    player.map.grid[x][y].cooldown += -1
+                }
+            } if(player.map.grid[x][y].decor === "rock") {
+                if(player.map.grid[x][y].cooldown > 0) {
+                    player.map.grid[x][y].cooldown += -1
+                }
+            }
+        }
+    }
+    updateOffset()
+    function updateOffset() {
+        if(player.x < window.innerWidth/2) {
+            cx = 0
+        } else if(player.x > player.map.width*64 - window.innerWidth/2) {
+            cx = -(player.map.width*64 - window.innerWidth)
+        } else {
+            cx = -(player.x - window.innerWidth/2)
+        } 
+        if(player.y < window.innerHeight/2) {
+            cy = 0
+        } else if(player.y > player.map.height*64 - window.innerHeight/2) {
+            cy = -(player.map.height*64 - window.innerHeight)
+        } else {
+            cy = -(player.y - window.innerHeight/2)
+        }
     }
     render()
 }

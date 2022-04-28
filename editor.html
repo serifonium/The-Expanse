@@ -12,7 +12,7 @@
 <body>
     <canvas id="myCanvas" width="1280" height="960" style="border:1px solid #000000;"></canvas>
 
-
+    <script src="./js/map.js"></script>
     <script src="./js/images.js"></script>
     <script src="./js/types.js"></script>
     <script src="./js/utils.js"></script>
@@ -20,7 +20,7 @@
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
 
-        var map = new Map(30, 15, "map")
+        var map = new Map(45, 20, "map")
         for(let x in map.grid) {
             for(let y in map.grid[x]) {
                 map.grid[x][y].type = "void"
@@ -118,7 +118,7 @@
             const rect = canvas.getBoundingClientRect()
             var mx_ = event.clientX - rect.left
             var my_ = event.clientY - rect.top
-            console.log(mx_, my_)
+            //console.log(mx_, my_)
             mx = mx_ - 2
             my = my_
             if(drawing === true) {
