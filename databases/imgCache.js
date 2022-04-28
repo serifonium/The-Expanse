@@ -6,10 +6,10 @@ var imgCache = {
 
 
 
-imgCache.borealTree1 = new Image(); imgCache.borealTree1.src = "../images/borealTree1.png";
-imgCache.borealTreeStump = new Image(); imgCache.borealTreeStump.src = "../images/borealTreeStump.png";
-imgCache.bridge = new Image(); imgCache.bridge.src = "../images/bridge.png";
-imgCache.coffeeShotEffect = new Image(); imgCache.coffeeShotEffect.src = "../images/coffeeShotEffect.png";
+imgCache.borealTree1 = new Image(); imgCache.borealTree1.src = "./images/borealTree1.png";
+imgCache.borealTreeStump = new Image(); imgCache.borealTreeStump.src = "./images/borealTreeStump.png";
+imgCache.bridge = new Image(); imgCache.bridge.src = "./images/bridge.png";
+imgCache.coffeeShotEffect = new Image(); imgCache.coffeeShotEffect.src = "./images/coffeeShotEffect.png";
 imgCache.coin = new Image(); imgCache.coin.src = "../images/coin.png";
 imgCache.deleteSave = new Image(); imgCache.deleteSave.src = "../images/deleteSave.png";
 imgCache.emptyTickSlot = new Image(); imgCache.emptyTickSlot.src = "../images/emptyTickSlot.png";
