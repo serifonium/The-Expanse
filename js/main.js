@@ -45,47 +45,47 @@ ctx.textAlign = "center"
 
 
 function setupWorld() {
-    
-    
+
+
     maps.push(mapUnString("3015cccccccccccddddccbbbbbbbbdddddcbbbbbbbbbdddddccbbbbbbbbbddddccbbbbbbbbbddddcbbbbbbbbbbbdddcbbbbbbbbbbbdddcbbbbbbbbbbbdddcbbbbbbbbbbbbddccbbbbbbbbbbbddccbbbbbbbbbbbbdcbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbccccbbbbbbbbbbbbcccbbbbbbbbbbccccccbbbbbbbccccccccbbbbbbbccccccccbbbbbbbbcccccccbbbbbbbbbbcccccbbbbbbbbbbccccccbbbbbbbbbbcccccbbbbbbbbbbccccccbbbbbbbbcccccccccbbbbbccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaabaaaaaaaaaabaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaabaaaabaaaaaaaaaaaabaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaacaaaaaaaaaabaaaaaaaaaaaaaaacacaaaaaaaaacaaaaaaaaaaaaaaacaacaacaaaaaacaaaaccacaaaaaaaaaacaacacaaaaaaacaacacccaaaaaaaaacaaacaaaaaaaaaaaaccaaaaaaaaaaaaaaaaaaa"))
     maps[0].name = "Starting Room"
     maps[0].grid[3][7].decor = ""
     //tpHitbox(20, 12, 1, 1, universe[0].planets[1].rooms[0], "Hz-892 Landing", "IceCliffside1")
 
-    for(let y = 0; y < 15; y++) {
-        for(let x = 0; x < 30; x++) {
+    for (let y = 0; y < 15; y++) {
+        for (let x = 0; x < 30; x++) {
             maps[0].grid[x][y].light = 0.92
-            if(maps[0].grid[x][y].type === "ice" || maps[0].grid[x][y].type === "water1") {
+            if (maps[0].grid[x][y].type === "ice" || maps[0].grid[x][y].type === "water1") {
                 maps[0].grid[x][y].tags.collisionDetection = true
-            } 
-            if(maps[0].grid[x][y].decor === "borealTree1") {
+            }
+            if (maps[0].grid[x][y].decor === "borealTree1") {
                 maps[0].grid[x][y].tags.collisionDetection = true
                 maps[0].grid[x][y].hits = 12
                 maps[0].grid[x][y].cooldown = 0
-            } else if(maps[0].grid[x][y].decor === "rock") {
+            } else if (maps[0].grid[x][y].decor === "rock") {
                 maps[0].grid[x][y].tags.collisionDetection = true
                 maps[0].grid[x][y].hits = 5
                 maps[0].grid[x][y].cooldown = 0
             }
-            if(maps[0].grid[x][y].type === "ice") {
+            if (maps[0].grid[x][y].type === "ice") {
                 maps[0].grid[x][y].tags.collisionDetection = true
-            } 
+            }
         }
     }
     function fillTilesType(x1, x2, y1, y2, map, type) {
-        for(let y = y1; y < y2; y++) {
-            for(let x = x1; x < x2; x++) {
+        for (let y = y1; y < y2; y++) {
+            for (let x = x1; x < x2; x++) {
                 map.grid[x][y].type = type
             }
         }
     } function fillTilesDecor(x1, x2, y1, y2, map, decor) {
-        for(let y = y1; y < y2; y++) {
-            for(let x = x1; x < x2; x++) {
+        for (let y = y1; y < y2; y++) {
+            for (let x = x1; x < x2; x++) {
                 map.grid[x][y].decor = decor
             }
         }
     }
-    
+
 }
 setupWorld()
 
@@ -121,7 +121,7 @@ setupWorld()
 
 
 var player = new Player("player", 128, 320, maps[0])
-    
+
 
 
 
@@ -154,8 +154,8 @@ setInterval(() => {
         saveGame(save)
     }
     */
-    
-}, 0.02*1000);
+
+}, 0.02 * 1000);
 
 
 
@@ -201,37 +201,37 @@ function particleSetup() {
         let size = Math.floor(Math.random() * 4 + 1)
         let x = Math.floor(Math.random() * (player.map.width - 1) * 64 + 1)
         let y = Math.floor(Math.random() * (player.map.height - 1) * 64 + 1)
-        let vx = Math.floor(Math.random() * 2000 - 1000)/2000
-        let vy = Math.floor(Math.random() * 2000 - 1000)/2000
-        if (player.map.grid[Math.floor(x/64)][Math.floor(y/64)].type === "space") {
-            particles.push({x: x, y: y, size: size, vx: vx, vy: vy})
+        let vx = Math.floor(Math.random() * 2000 - 1000) / 2000
+        let vy = Math.floor(Math.random() * 2000 - 1000) / 2000
+        if (player.map.grid[Math.floor(x / 64)][Math.floor(y / 64)].type === "space") {
+            particles.push({ x: x, y: y, size: size, vx: vx, vy: vy })
         }
-        
+
     }
     return particles
 }
 function spaceWarpSetup() {
     spp = []
-    for(let i = 0; i < 20; i++) {
+    for (let i = 0; i < 20; i++) {
 
         spp.push({
-            x: (Math.floor(Math.random()*15+35)/10) + i * 5,
-            y: (Math.floor(Math.random()*400)*-1),
-            w: (Math.floor(Math.random()*35+35)/10),
-            h: (Math.floor(Math.random()*1200+800)),
-            v: (Math.floor(Math.random()*400+50)/50)
+            x: (Math.floor(Math.random() * 15 + 35) / 10) + i * 5,
+            y: (Math.floor(Math.random() * 400) * -1),
+            w: (Math.floor(Math.random() * 35 + 35) / 10),
+            h: (Math.floor(Math.random() * 1200 + 800)),
+            v: (Math.floor(Math.random() * 400 + 50) / 50)
         })
     }
 }
 
 function hitboxFind(x, y) {
-            
-    for(let i of currentHitboxes) {
-        if(i.x <= x + 32 && x + 32 <= i.x + i.w && i.y <= y + 32 && y + 32 <= i.y + i.h) {
+
+    for (let i of currentHitboxes) {
+        if (i.x <= x + 32 && x + 32 <= i.x + i.w && i.y <= y + 32 && y + 32 <= i.y + i.h) {
             return i
-            
+
         } else {
-            
+
             //return undefined
         }
     }

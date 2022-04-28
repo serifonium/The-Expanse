@@ -2,116 +2,116 @@ let spaceLock = false
 document.addEventListener('keydown', logKey);
 document.addEventListener('keyup', logUp);
 function logKey(e) {
-    if(e.key === "w") {
-        if(player.canMove) {
+    if (e.key === "w") {
+        if (player.canMove) {
             player.vy = -player.speed
             player.rotation = 0
             console.log(player.vy)
         }
-    } if(e.key === "a") {
-        if(player.canMove) {
+    } if (e.key === "a") {
+        if (player.canMove) {
             player.vx = -player.speed
             player.rotation = 1
         }
-    } if(e.key === "s") {
-        if(player.canMove) {
+    } if (e.key === "s") {
+        if (player.canMove) {
             player.vy = player.speed
             player.rotation = 2
         }
-    } if(e.key === "d") {
-        if(player.canMove) {
+    } if (e.key === "d") {
+        if (player.canMove) {
             player.vx = player.speed
             player.rotation = 3
         }
-    } if(e.key === " " && spaceLock !== true) {
-        
-        
-        if(player.inventory.items[player.itemSelected].name === "Fractured Axe") {
-            if(player.interactTile.decor === "borealTree1" && player.interactTile.cooldown === 0) {
+    } if (e.key === " " && spaceLock !== true) {
+
+
+        if (player.inventory.items[player.itemSelected].name === "Fractured Axe") {
+            if (player.interactTile.decor === "borealTree1" && player.interactTile.cooldown === 0) {
                 player.interactTile.hits += -1
                 player.interactTile.cooldown = 4
-                if(player.interactTile.hits === 0) {
+                if (player.interactTile.hits === 0) {
                     player.interactTile.decor = ""
                     player.interactTile.tags.collisionDetection = false
-                    inventoryAdd(new Item("Wood", "Resource", Math.floor(Math.random()*5+5)))
+                    inventoryAdd(new Item("Wood", "Resource", Math.floor(Math.random() * 5 + 5)))
                 }
             }
-        } else if(player.inventory.items[player.itemSelected].name === "Fractured Pickaxe") {
-            if(player.interactTile.decor === "rock" && player.interactTile.cooldown === 0) {
+        } else if (player.inventory.items[player.itemSelected].name === "Fractured Pickaxe") {
+            if (player.interactTile.decor === "rock" && player.interactTile.cooldown === 0) {
                 player.interactTile.hits += -1
                 player.interactTile.cooldown = 4
-                if(player.interactTile.hits === 0) {
+                if (player.interactTile.hits === 0) {
                     player.interactTile.decor = ""
                     player.interactTile.tags.collisionDetection = false
-                    inventoryAdd(new Item("Stone", "Resource", Math.floor(Math.random()*2+1)))
+                    inventoryAdd(new Item("Stone", "Resource", Math.floor(Math.random() * 2 + 1)))
                 }
             }
         }
         spaceLock = true
-        
-        
-        
-        
-    } if(e.key === "Escape") { 
-        if(player.interfaceOpen !== undefined) {
-            if(player.interfaceOpen === player.inventory) {
+
+
+
+
+    } if (e.key === "Escape") {
+        if (player.interfaceOpen !== undefined) {
+            if (player.interfaceOpen === player.inventory) {
                 player.interfaceOpen = undefined
                 document.getElementById("darkBackground").hidden = true
                 document.getElementById("inventory").hidden = true
             }
-            
-            
+
+
         } else {
             player.interfaceOpen = player.inventory
             document.getElementById("darkBackground").hidden = false
             document.getElementById("inventory").hidden = false
         }
-    } if(e.key === "1") {
-        if(player.interfaceOpen === undefined) {
+    } if (e.key === "1") {
+        if (player.interfaceOpen === undefined) {
             player.itemSelected = 0
         } else if (player.interfaceOpen.name === "inventory") {
             player.interfaceOpen.tab = 0
         }
-    } if(e.key === "2") {
-        if(player.interfaceOpen === undefined) {
+    } if (e.key === "2") {
+        if (player.interfaceOpen === undefined) {
             player.itemSelected = 1
         } else if (player.interfaceOpen.name === "inventory") {
             player.interfaceOpen.tab = 1
         }
-    } if(e.key === "3") {
-        if(player.interfaceOpen === undefined) {
+    } if (e.key === "3") {
+        if (player.interfaceOpen === undefined) {
             player.itemSelected = 2
         } else if (player.interfaceOpen.name === "inventory") {
             player.interfaceOpen.tab = 2
         }
-    } if(e.key === "4") {
-        if(player.interfaceOpen === undefined) {
+    } if (e.key === "4") {
+        if (player.interfaceOpen === undefined) {
             player.itemSelected = 3
         } else if (player.interfaceOpen.name === "inventory") {
             player.interfaceOpen.tab = 3
         }
-    } if(e.key === "5") {
-        if(player.interfaceOpen === undefined) {
+    } if (e.key === "5") {
+        if (player.interfaceOpen === undefined) {
             player.itemSelected = 4
         } else if (player.interfaceOpen.name === "inventory") {
             player.interfaceOpen.tab = 4
-            
+
         }
     }
-    if(e.key === "e") {
+    if (e.key === "e") {
         //inventoryAdd(new Item("Wood", "Resource", 3))
     }
 }
 function logUp(e) {
-    if(e.key === "w") {
+    if (e.key === "w") {
         player.vy = 0
-    } if(e.key === "a") {
+    } if (e.key === "a") {
         player.vx = 0
-    } if(e.key === "s") {
+    } if (e.key === "s") {
         player.vy = 0
-    } if(e.key === "d") {
+    } if (e.key === "d") {
         player.vx = 0
-    } if(e.key === " ") {
+    } if (e.key === " ") {
         spaceLock = false
     }
 }
@@ -119,7 +119,7 @@ function logUp(e) {
 
 
 
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     getMouseClick(e)
 })
 var clickX = null
@@ -175,7 +175,7 @@ function getMouseClick(event) {
     */
 }
 
-document.addEventListener('mousemove', function(e) {
+document.addEventListener('mousemove', function (e) {
     getMousePos(e)
 })
 var hx = null

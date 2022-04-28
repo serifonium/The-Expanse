@@ -256,28 +256,28 @@ function drawTextBox(text, colour) {
 function inventoryAdd(item) {
     let a = false
     let b = undefined
-    for(let i of player.inventory.items) {
+    for (let i of player.inventory.items) {
         if (i !== null && a === false) {
-            if(i.name === item.name) {
+            if (i.name === item.name) {
                 i.amount += item.amount
                 a = true
                 notifications.push(
-                    {item: item, frame: 0}
+                    { item: item, frame: 0 }
                 )
             }
-            
+
         }
-        
-    } 
+
+    }
     if (a === false) {
         for (let o in player.inventory.items) {
             i = player.inventory.items[o]
-            if(i === null && a === false) {
+            if (i === null && a === false) {
                 a = true
                 b = o
                 player.inventory.items[b] = item
                 notifications.push(
-                    {item: player.inventory.items[b], frame: 0}
+                    { item: player.inventory.items[b], frame: 0 }
                 )
             }
         }
@@ -292,18 +292,18 @@ function loadMap(map, x, y) {
     cx = 0
     cy = 0
     let p = Math.floor(map.timeSinceLastVisit)
-    
-    for(let x = 0; x < map.width; x++) {
-        
-        for(let y = 0; y < map.height; y++) {
+
+    for (let x = 0; x < map.width; x++) {
+
+        for (let y = 0; y < map.height; y++) {
             let tile = map.grid[x][y]
-            
-            for(let i = 0; i < p; i++) {
-                
-                if(tile.tags.canGrowTrees === true) {
-                    
-                    if(Math.random() < 0.00001) {
-                        
+
+            for (let i = 0; i < p; i++) {
+
+                if (tile.tags.canGrowTrees === true) {
+
+                    if (Math.random() < 0.00001) {
+
                         map.grid[x][y].decor = "borealTree1"
                         map.grid[x][y].offsetcounter = 0
                         map.grid[x][y].tags.collisionDetection = true
@@ -319,50 +319,50 @@ function loadMap(map, x, y) {
 
 function drawBox(x, y, w, h) {
     ctx.fillStyle = "#bbbbbb"
-    ctx.fillRect(x, y, w+8, h+8)
+    ctx.fillRect(x, y, w + 8, h + 8)
     ctx.fillStyle = "#6b6b6b"
-    ctx.fillRect(x+4, y+4, w, h)
+    ctx.fillRect(x + 4, y + 4, w, h)
 }
 function secondsToTime(n) {
-    
+
     let time = ""
-    let e = Math.floor(n/60)
-    time += (String(Math.floor(n/60)))
+    let e = Math.floor(n / 60)
+    time += (String(Math.floor(n / 60)))
     time += (":")
-    if((String(n - e*60)).length === 2) {
-        time += (String(n - e*60))
+    if ((String(n - e * 60)).length === 2) {
+        time += (String(n - e * 60))
     } else {
         time += "0"
-        time += (String(n - e*60))
+        time += (String(n - e * 60))
     }
-    
-    
+
+
     return time
 }
 
 function mapUnString(string) {
-    let map = new Map(Number(string[0]+string[1]), Number(string[2]+string[3]))
-    for(let x = 0; x < map.height; x++) {
-        for(let y = 0; y < map.width; y++) {
+    let map = new Map(Number(string[0] + string[1]), Number(string[2] + string[3]))
+    for (let x = 0; x < map.height; x++) {
+        for (let y = 0; y < map.width; y++) {
             let tile = map.grid[y][x]
-            if(string[x+(y*map.height)+4] === "a") {
+            if (string[x + (y * map.height) + 4] === "a") {
                 tile.type = "void"
-            } else if(string[x+(y*map.height)+4] === "b") {
+            } else if (string[x + (y * map.height) + 4] === "b") {
                 tile.type = "snow"
-            } else if(string[x+(y*map.height)+4] === "c") {
+            } else if (string[x + (y * map.height) + 4] === "c") {
                 tile.type = "ice"
-            } else if(string[x+(y*map.height)+4] === "d") {
+            } else if (string[x + (y * map.height) + 4] === "d") {
                 tile.type = "water1"
             }
         }
-    } for(let x = 0; x < map.height; x++) {
-        for(let y = 0; y < map.width; y++) {
+    } for (let x = 0; x < map.height; x++) {
+        for (let y = 0; y < map.width; y++) {
             let tile = map.grid[y][x]
-            if(string[x+(y*map.height)+4+(map.width*map.height)] === "a") {
+            if (string[x + (y * map.height) + 4 + (map.width * map.height)] === "a") {
                 tile.decor = ""
-            } else if(string[x+(y*map.height)+4+(map.width*map.height)] === "b") {
+            } else if (string[x + (y * map.height) + 4 + (map.width * map.height)] === "b") {
                 tile.decor = "borealTree1"
-            } else if(string[x+(y*map.height)+4+(map.width*map.height)] === "c") {
+            } else if (string[x + (y * map.height) + 4 + (map.width * map.height)] === "c") {
                 tile.decor = "rock"
             }
         }
@@ -372,7 +372,7 @@ function mapUnString(string) {
 
 function overlapping(x1, y1, w1, h1, x2, y2, w2, h2) {
     // Check x and y for overlap
-    if (x2 > w1 + x1 || x1 > w2 + x2 || y2 > h1 + y1 || y1 > h2 + y2){
+    if (x2 > w1 + x1 || x1 > w2 + x2 || y2 > h1 + y1 || y1 > h2 + y2) {
         return false;
     }
     return true;
@@ -384,7 +384,7 @@ function overlapping(x1, y1, w1, h1, x2, y2, w2, h2) {
 function drawIMG(img, x, y, id, place) {
     let image = document.createElement("img");
     image.src = img;
-    if(id !== undefined) {
+    if (id !== undefined) {
         image.id = id
     }
     image.draggable = false
@@ -393,36 +393,36 @@ function drawIMG(img, x, y, id, place) {
     body.appendChild(image);
 } function drawRECT(x, y, w, h, colour, id, place) {
     let box = document.createElement("div");
-    if(id !== undefined) {
+    if (id !== undefined) {
         box.id = id
     }
-    box.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px; height: "+String(h)+"px; width: "+String(w)+"px; margin-bottom: 15px; background-color:" + colour
+    box.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px; height: " + String(h) + "px; width: " + String(w) + "px; margin-bottom: 15px; background-color:" + colour
     let body = document.getElementById(place);
     body.appendChild(box);
 } function drawTEXT(x, y, text, type, id, place, centered) {
     let textbox = document.createElement(type);
-    if(id !== undefined) {
+    if (id !== undefined) {
         textbox.id = id
     }
-    if(centered === true) {
+    if (centered === true) {
         textbox.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px; width:100%;"
     } else {
         textbox.style = "position:absolute; left:" + String(x) + "px; top:" + String(y) + "px;"
     }
-    
+
     let node = document.createTextNode(text);
     let body = document.getElementById(place);
 
-    
-    
+
+
     textbox.appendChild(node);
-    textbox.style.unselectable="on"
+    textbox.style.unselectable = "on"
     body.appendChild(textbox);
 
 } function playSFX(sfx, onEnd) {
     let audio = new Audio(sfx);
     audio.volume = player.personalOptions.musicVolume
-    if (onEnd){
+    if (onEnd) {
         audio.onended = () => {
             onEnd();
         }
@@ -431,7 +431,7 @@ function drawIMG(img, x, y, id, place) {
     //console.log("played")
 }
 function findTileId(x, y, add) {
-    return document.getElementById(String(Number(x)+(Number(y)*player.map.width))+add)
+    return document.getElementById(String(Number(x) + (Number(y) * player.map.width)) + add)
 } function findPythDistance(x1, y1, x2, y2) {
-    return Math.sqrt(Math.pow((x1-x2),2) + Math.pow((y1-y2),2))
+    return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2))
 }

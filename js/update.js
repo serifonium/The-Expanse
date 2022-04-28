@@ -133,22 +133,22 @@ function update() {
         }
     }
     */
-    if(player.map.grid[Math.floor((player.x + player.vx + 32)/64)][Math.floor((player.y + 32) /64)].tags.collisionDetection === false) {
+    if (player.map.grid[Math.floor((player.x + player.vx + 32) / 64)][Math.floor((player.y + 32) / 64)].tags.collisionDetection === false) {
         player.x = player.x + player.vx
-    } if(player.map.grid[Math.floor((player.x + 32)/64)][Math.floor((player.y + player.vy + 32) /64)].tags.collisionDetection === false) {
+    } if (player.map.grid[Math.floor((player.x + 32) / 64)][Math.floor((player.y + player.vy + 32) / 64)].tags.collisionDetection === false) {
         player.y = player.y + player.vy
-    } 
+    }
     player.update()
     for (let x in player.map.grid) {
         for (let y in player.map.grid[x]) {
             tile = player.map.grid[x][y]
             tile.update()
-            if(player.map.grid[x][y].decor === "borealTree1") {
-                if(player.map.grid[x][y].cooldown > 0) {
+            if (player.map.grid[x][y].decor === "borealTree1") {
+                if (player.map.grid[x][y].cooldown > 0) {
                     player.map.grid[x][y].cooldown += -1
                 }
-            } if(player.map.grid[x][y].decor === "rock") {
-                if(player.map.grid[x][y].cooldown > 0) {
+            } if (player.map.grid[x][y].decor === "rock") {
+                if (player.map.grid[x][y].cooldown > 0) {
                     player.map.grid[x][y].cooldown += -1
                 }
             }
@@ -156,19 +156,19 @@ function update() {
     }
     updateOffset()
     function updateOffset() {
-        if(player.x < window.innerWidth/2) {
+        if (player.x < window.innerWidth / 2) {
             cx = 0
-        } else if(player.x > player.map.width*64 - window.innerWidth/2) {
-            cx = -(player.map.width*64 - window.innerWidth)
+        } else if (player.x > player.map.width * 64 - window.innerWidth / 2) {
+            cx = -(player.map.width * 64 - window.innerWidth)
         } else {
-            cx = -(player.x - window.innerWidth/2)
-        } 
-        if(player.y < window.innerHeight/2) {
+            cx = -(player.x - window.innerWidth / 2)
+        }
+        if (player.y < window.innerHeight / 2) {
             cy = 0
-        } else if(player.y > player.map.height*64 - window.innerHeight/2) {
-            cy = -(player.map.height*64 - window.innerHeight)
+        } else if (player.y > player.map.height * 64 - window.innerHeight / 2) {
+            cy = -(player.map.height * 64 - window.innerHeight)
         } else {
-            cy = -(player.y - window.innerHeight/2)
+            cy = -(player.y - window.innerHeight / 2)
         }
     }
     render()

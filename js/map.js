@@ -21,7 +21,7 @@ class Map {
     update() {
         this.timeSinceLastVisit += 0.02
     }
-    toSerializable(){
+    toSerializable() {
         return {
             name: this.name,
             height: this.height,
@@ -29,18 +29,20 @@ class Map {
             grid: this.grid.map(g => g.map(t => t.toSerializable())),
             hitboxes: this.hitboxes.map(h => h.toSerializable()),
             building: this.building
-        } 
+        }
     }
 }
 class Tile {
     constructor(x, y) {
         this.type = "space"
         this.decor = ""
-        this.pos = {x: x, y: y}
+        this.pos = { x: x, y: y }
         this.onPlayerInteractActive = false
-        this.onPlayerInteractRender = function() {}
-        this.tags = {collisionDetection: false,
-        canGrowTrees: false}
+        this.onPlayerInteractRender = function () { }
+        this.tags = {
+            collisionDetection: false,
+            canGrowTrees: false
+        }
         this.hitbox = null
         this.light = 1
     }
@@ -48,29 +50,29 @@ class Tile {
         if (this.onPlayerInteractActive === true) {
             this.onPlayerInteractRender()
         }
-    } 
-    orientate(map) {
-        if(this.pos.y - 1 >= 0) {
-            map.grid[this.pos.x][this.pos.y].up = map.grid[this.pos.x][this.pos.y - 1]
-        } else {map.grid[this.pos.x][this.pos.y].up = undefined}
-        if(this.pos.x + 1 < map.width) {
-            map.grid[this.pos.x][this.pos.y].right = map.grid[this.pos.x + 1][this.pos.y]
-        } else {map.grid[this.pos.x][this.pos.y].right = undefined}
-        if(this.pos.y + 1 < map.height) {
-            map.grid[this.pos.x][this.pos.y].down = map.grid[this.pos.x][this.pos.y + 1]
-        } else {map.grid[this.pos.x][this.pos.y].down = undefined}
-        if(this.pos.x - 1 >= 0) {
-            map.grid[this.pos.x][this.pos.y].left = map.grid[this.pos.x - 1][this.pos.y]
-        } else {map.grid[this.pos.x][this.pos.y].left = undefined}
     }
-    toSerializable(){
+    orientate(map) {
+        if (this.pos.y - 1 >= 0) {
+            map.grid[this.pos.x][this.pos.y].up = map.grid[this.pos.x][this.pos.y - 1]
+        } else { map.grid[this.pos.x][this.pos.y].up = undefined }
+        if (this.pos.x + 1 < map.width) {
+            map.grid[this.pos.x][this.pos.y].right = map.grid[this.pos.x + 1][this.pos.y]
+        } else { map.grid[this.pos.x][this.pos.y].right = undefined }
+        if (this.pos.y + 1 < map.height) {
+            map.grid[this.pos.x][this.pos.y].down = map.grid[this.pos.x][this.pos.y + 1]
+        } else { map.grid[this.pos.x][this.pos.y].down = undefined }
+        if (this.pos.x - 1 >= 0) {
+            map.grid[this.pos.x][this.pos.y].left = map.grid[this.pos.x - 1][this.pos.y]
+        } else { map.grid[this.pos.x][this.pos.y].left = undefined }
+    }
+    toSerializable() {
         return {
             type: this.type,
             //decor: this.decor,
             pos: this.pos,
             tags: this.tags,
-            
-        } 
+
+        }
     }
 }
 
