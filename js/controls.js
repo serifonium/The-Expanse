@@ -6,7 +6,6 @@ function logKey(e) {
         if (player.canMove) {
             player.vy = -player.speed
             player.rotation = 0
-            console.log(player.vy)
         }
     } if (e.key === "a") {
         if (player.canMove) {
@@ -47,6 +46,13 @@ function logKey(e) {
                 }
             }
         }
+
+        for(let h of hitboxes) {
+            if(overlapping(player.interactTile.pos.x*64+1, player.interactTile.pos.y*64+1, 62, 62, h.x, h.y, h.w, h.h)) {
+                h.onPlayerSpace()
+            }
+        }
+        
         spaceLock = true
 
 
@@ -56,15 +62,12 @@ function logKey(e) {
         if (player.interfaceOpen !== undefined) {
             if (player.interfaceOpen === player.inventory) {
                 player.interfaceOpen = undefined
-                document.getElementById("darkBackground").hidden = true
-                document.getElementById("inventory").hidden = true
             }
 
 
         } else {
             player.interfaceOpen = player.inventory
-            document.getElementById("darkBackground").hidden = false
-            document.getElementById("inventory").hidden = false
+
         }
     } if (e.key === "1") {
         if (player.interfaceOpen === undefined) {

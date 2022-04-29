@@ -81,6 +81,8 @@ function render() {
                 } else {
                     ctx.drawImage(imgCache.rock, xOffset, yOffset)
                 }
+            } else if (tile.decor === "tradersTent") {
+                ctx.drawImage(imgCache.tent, xOffset, yOffset)
             }
         }
     }
@@ -90,6 +92,21 @@ function render() {
         ctx.fillRect(player.interactTile.pos.x * 64 + cx, player.interactTile.pos.y * 64 + 60 + cy, 64, 4)
         ctx.fillRect(player.interactTile.pos.x * 64 + 60 + cx, player.interactTile.pos.y * 64 + cy, 4, 64)
         ctx.fillRect(player.interactTile.pos.x * 64 + cx, player.interactTile.pos.y * 64 + cy, 4, 64)
+    }if (player.personalOptions.hitboxesHighlighted) {
+        for(let h of hitboxes) {
+            ctx.fillStyle = "#7870e6"
+            ctx.fillRect(h.x + cx, h.y + cy, h.w, 4)
+            ctx.fillRect(h.x + cx, h.y + h.h - 4 + cy, h.w, 4)
+            ctx.fillRect(h.x + h.w - 4 + cx, h.y + cy, 4, h.h)
+            ctx.fillRect(h.x + cx, h.y + cy, 4, h.h)
+        }
+    }
+
+    for(let no in notifications) {
+        let n = notifications[no]
+        ctx.fillStyle = n.colour
+        ctx.font = "24px Arial";
+        ctx.fillText(n.text, 24, window.innerHeight - 72 - no*32)
     }
     renderHotbar()
     if (player.interfaceOpen !== undefined) {

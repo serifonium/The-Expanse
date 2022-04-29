@@ -25,13 +25,16 @@
 
 
 var maps = []
+var hitboxes = []
+var notifications = []
 
 let cx = 0
 let cy = 0
-let notifications = []
 
-hitboxes = []
+
+
 currentHitboxes = []
+
 
 
 /*
@@ -45,11 +48,35 @@ ctx.textAlign = "center"
 
 
 function setupWorld() {
+    function fillTilesType(x1, x2, y1, y2, map, type) {
+        for (let y = y1; y < y2; y++) {
+            for (let x = x1; x < x2; x++) {
+                map.grid[x][y].type = type
+            }
+        }
+    } function fillTilesDecor(x1, x2, y1, y2, map, decor) {
+        for (let y = y1; y < y2; y++) {
+            for (let x = x1; x < x2; x++) {
+                map.grid[x][y].decor = decor
+            }
+        }
+    }
 
+
+
+    
 
     maps.push(mapUnString("3015cccccccccccddddccbbbbbbbbdddddcbbbbbbbbbdddddccbbbbbbbbbddddccbbbbbbbbbddddcbbbbbbbbbbbdddcbbbbbbbbbbbdddcbbbbbbbbbbbdddcbbbbbbbbbbbbddccbbbbbbbbbbbddccbbbbbbbbbbbbdcbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbbccbbbbbbbbbbbbccccbbbbbbbbbbbbcccbbbbbbbbbbccccccbbbbbbbccccccccbbbbbbbccccccccbbbbbbbbcccccccbbbbbbbbbbcccccbbbbbbbbbbccccccbbbbbbbbbbcccccbbbbbbbbbbccccccbbbbbbbbcccccccccbbbbbccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaabaaaaaaaaaabaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaabaaaabaaaaaaaaaaaabaaaaaaaaaabaaaaaaaaaaabaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaacaaaaaaaaaabaaaaaaaaaaaaaaacacaaaaaaaaacaaaaaaaaaaaaaaacaacaacaaaaaacaaaaccacaaaaaaaaaacaacacaaaaaaacaacacccaaaaaaaaacaaacaaaaaaaaaaaaccaaaaaaaaaaaaaaaaaaa"))
     maps[0].name = "Starting Room"
     maps[0].grid[3][7].decor = ""
+    maps[0].grid[5][0].decor = "tradersTent"
+    maps[0].grid[5][1].tags.collisionDetection = true
+    maps[0].grid[6][1].tags.collisionDetection = true
+    maps[0].hitboxes.push(new Hitbox(5*64, 1*64, 2*64, 1*64, maps[0], function() {
+        tradersTent.onInteract()
+    }))
+    
+    
     //tpHitbox(20, 12, 1, 1, universe[0].planets[1].rooms[0], "Hz-892 Landing", "IceCliffside1")
 
     for (let y = 0; y < 15; y++) {
@@ -72,18 +99,8 @@ function setupWorld() {
             }
         }
     }
-    function fillTilesType(x1, x2, y1, y2, map, type) {
-        for (let y = y1; y < y2; y++) {
-            for (let x = x1; x < x2; x++) {
-                map.grid[x][y].type = type
-            }
-        }
-    } function fillTilesDecor(x1, x2, y1, y2, map, decor) {
-        for (let y = y1; y < y2; y++) {
-            for (let x = x1; x < x2; x++) {
-                map.grid[x][y].decor = decor
-            }
-        }
+    for(let h of maps[0].hitboxes) {
+        hitboxes.push(h)
     }
 
 }
@@ -128,10 +145,8 @@ var player = new Player("player", 128, 320, maps[0])
 
 
 
-//universe[0].planets[1].rooms[1].enemies.push(new Enemy("miner", 800, 550, 64, 64, universe[0].planets[1].rooms[1], 2, 4))
-//universe[0].planets[1].rooms[1].hitboxes.push(universe[0].planets[1].rooms[1].enemies[1].hitbox)
 
-currentHitboxes = player.map.hitboxes
+
 
 
 

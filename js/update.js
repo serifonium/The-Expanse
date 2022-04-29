@@ -133,6 +133,16 @@ function update() {
         }
     }
     */
+
+    for(let no in notifications) {
+        let n = notifications[no]
+        if(n.time < 0) {
+            notifications.splice(no, 1)
+        } else {
+            n.time += -0.02
+        }
+    }
+
     if (player.map.grid[Math.floor((player.x + player.vx + 32) / 64)][Math.floor((player.y + 32) / 64)].tags.collisionDetection === false) {
         player.x = player.x + player.vx
     } if (player.map.grid[Math.floor((player.x + 32) / 64)][Math.floor((player.y + player.vy + 32) / 64)].tags.collisionDetection === false) {

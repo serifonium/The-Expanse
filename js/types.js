@@ -29,6 +29,9 @@ class Player {
         this.health = 20
         this.maxHealth = 20
 
+        this.quests = [
+        ]
+
         this.avatar = {
             hairColour: "#08196e",
             eyeColour: "#ff6254",
@@ -86,6 +89,13 @@ class Player {
             let xOffset = (window.innerWidth - 64 * 13) / 2 - 0
             let yOffset = (window.innerHeight - 64 * 7) / 2 - 0
 
+            function drawBorder(x, y, w, h) {
+                ctx.fillStyle = "#6b6b6b"
+                ctx.fillRect(x, y, w, h)
+                ctx.fillStyle = "#dddddd"
+                ctx.fillRect(x + 4, y + 4, w - 8, h - 8)
+            }
+
             ctx.globalAlpha = 0.5
             ctx.fillStyle = "#000000"
             ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
@@ -94,16 +104,39 @@ class Player {
             ctx.fillRect(xOffset - 8, yOffset - 8, 64 * 13 + 16, 64 * 7 + 16)
             ctx.fillStyle = "#dddddd"
             ctx.fillRect(xOffset, yOffset, 64 * 13, 64 * 7)
-            for (let x = 0; x < 13; x++) {
-                for (let y = 0; y < 2; y++) {
-                    if (x < 5 && y === 0) {
-                        ctx.drawImage(imgCache.slot2, xOffset + x * 64, yOffset + y * 64 - 1)
-                    } else {
-                        ctx.drawImage(imgCache.slot1, xOffset + x * 64, yOffset + y * 64 - 1)
-                    }
+            if(player.inventory.tab !== undefined) {
+                if(player.inventory.tab === 0) {
+                    for (let x = 0; x < 13; x++) {
+                        for (let y = 0; y < 2; y++) {
+                            if (x < 5 && y === 0) {
+                                ctx.drawImage(imgCache.slot2, xOffset + x * 64, yOffset + y * 64 - 1)
+                            } else {
+                                ctx.drawImage(imgCache.slot1, xOffset + x * 64, yOffset + y * 64 - 1)
+                            }
 
+                        }
+                    }
+                    
+                    drawBorder(xOffset+1*64, yOffset+2*64-1, 2*64, 3*64+1)
+                    drawBorder(xOffset+0*64, yOffset+5*64-1, 4*64, 1*64+1)
+                    drawBorder(xOffset+0*64, yOffset+6*64-1, 4*64, 1*64+2)
+                    ctx.drawImage(imgCache.coin, xOffset+0*64, yOffset+6*64)
+                    ctx.fillStyle = "#000000"
+                    ctx.font = "32px Arial";
+                    ctx.fillText(player.balance, xOffset+1*64+16, yOffset+6*64+42)
+                } else if(player.inventory.tab === 1) {
+                    for(let q in player.quests) {
+                        let quest = player.quests[q]
+                        drawBorder(xOffset+0*64, yOffset+(q*2)*64-1, 6*64, 2*64+2)
+                        ctx.fillStyle = "#000000"
+                        ctx.font = "16px Arial";
+                        ctx.fillText(quest.name, xOffset+0*64+16, yOffset+(q*2)*64+40)
+                        ctx.font = "12px Arial";
+                        ctx.fillText(quest.desc, xOffset+0*64+16, yOffset+(q*2+1)*64+0)
+                    }
                 }
             }
+
         })
         this.inventory.tab = 0
         this.inventory.itemSelected = undefined
@@ -303,13 +336,16 @@ class NPC {
     }
 }
 class Hitbox {
-    constructor(x, y, w, h) {
+    constructor(x, y, w, h, map, onPlayerSpace) {
         this.x = x
         this.y = y
         this.w = w
         this.h = h
         this.interactFunction = null
         this.playerCollide = ""
+        this.map = map
+        //this.map.hitboxes.push(this)
+        this.onPlayerSpace = onPlayerSpace
     }
     update(x, y) {
         this.x = x

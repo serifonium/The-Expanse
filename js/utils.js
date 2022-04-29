@@ -262,7 +262,7 @@ function inventoryAdd(item) {
                 i.amount += item.amount
                 a = true
                 notifications.push(
-                    { item: item, frame: 0 }
+                    //{ item: item, frame: 0 }
                 )
             }
 
@@ -277,7 +277,7 @@ function inventoryAdd(item) {
                 b = o
                 player.inventory.items[b] = item
                 notifications.push(
-                    { item: player.inventory.items[b], frame: 0 }
+                    //{text: item.name + " +" + item.amo, time: 3, colour: "#000000"}
                 )
             }
         }
