@@ -1,6 +1,6 @@
 
 //const serverURL = "https://expanse-node-deploy.herokuapp.com/";
-const serverURL = "http://venter.center:46551";
+const serverURL = "https://expanse.venter.center";
 
 const socket = io(serverURL, {
     withCredentials: false,
