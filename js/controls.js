@@ -1,121 +1,148 @@
 let spaceLock = false
 document.addEventListener('keydown', logKey);
 document.addEventListener('keyup', logUp);
+
+var typing = false
+var typingText = ""
+
 function logKey(e) {
-    if (e.key === "w") {
-        if (player.canMove) {
-            player.vy = -player.speed
-            player.rotation = 0
-        }
-    } if (e.key === "a") {
-        if (player.canMove) {
-            player.vx = -player.speed
-            player.rotation = 1
-        }
-    } if (e.key === "s") {
-        if (player.canMove) {
-            player.vy = player.speed
-            player.rotation = 2
-        }
-    } if (e.key === "d") {
-        if (player.canMove) {
-            player.vx = player.speed
-            player.rotation = 3
-        }
-    } if (e.key === " " && spaceLock !== true) {
+    if(typing === false) {
+        if (e.key === "w") {
+            if (player.canMove) {
+                player.vy = -player.speed
+                player.rotation = 0
+            }
+        } if (e.key === "a") {
+            if (player.canMove) {
+                player.vx = -player.speed
+                player.rotation = 1
+            }
+        } if (e.key === "s") {
+            if (player.canMove) {
+                player.vy = player.speed
+                player.rotation = 2
+            }
+        } if (e.key === "d") {
+            if (player.canMove) {
+                player.vx = player.speed
+                player.rotation = 3
+            }
+        } if (e.key === " " && spaceLock !== true) {
 
 
-        if (player.inventory.items[player.itemSelected].name === "Fractured Axe") {
-            if (player.interactTile.decor === "borealTree1" && player.interactTile.cooldown === 0) {
-                player.interactTile.hits += -1
-                player.interactTile.cooldown = 4
-                if (player.interactTile.hits === 0) {
-                    player.interactTile.decor = ""
-                    player.interactTile.tags.collisionDetection = false
-                    inventoryAdd(new Item("Wood", "Resource", Math.floor(Math.random() * 5 + 5)))
+            if (player.inventory.items[player.itemSelected].name === "Fractured Axe") {
+                if (player.interactTile.decor === "borealTree1" && player.interactTile.cooldown === 0) {
+                    
+                    for(let m in maps) {
+                        if(player.place === maps[m].name) {
+                            console.log("yes")
+                            socket.emit("updateMap", "hitTree", 
+                                {x: player.interactTile.pos.x, y: player.interactTile.pos.y, map: Number(m)}
+                            )
+                        }
+                    }
+
+                }
+            } else if (player.inventory.items[player.itemSelected].name === "Fractured Pickaxe") {
+                if (player.interactTile.decor === "rock" && player.interactTile.cooldown === 0) {
+                    for(let m in maps) {
+                        if(player.place === maps[m].name) {
+                            console.log("yes")
+                            socket.emit("updateMap", "hitRock", 
+                                {x: player.interactTile.pos.x, y: player.interactTile.pos.y, map: Number(m)}
+                            )
+                        }
+                    }
+
                 }
             }
-        } else if (player.inventory.items[player.itemSelected].name === "Fractured Pickaxe") {
-            if (player.interactTile.decor === "rock" && player.interactTile.cooldown === 0) {
-                player.interactTile.hits += -1
-                player.interactTile.cooldown = 4
-                if (player.interactTile.hits === 0) {
-                    player.interactTile.decor = ""
-                    player.interactTile.tags.collisionDetection = false
-                    inventoryAdd(new Item("Stone", "Resource", Math.floor(Math.random() * 2 + 1)))
+
+            for(let h of hitboxes) {
+                if(overlapping(player.interactTile.pos.x*64+1, player.interactTile.pos.y*64+1, 62, 62, h.x, h.y, h.w, h.h)) {
+                    h.onPlayerSpace()
                 }
             }
-        }
+            
+            spaceLock = true
 
-        for(let h of hitboxes) {
-            if(overlapping(player.interactTile.pos.x*64+1, player.interactTile.pos.y*64+1, 62, 62, h.x, h.y, h.w, h.h)) {
-                h.onPlayerSpace()
+
+
+
+        } if (e.key === "Escape") {
+            if (player.interfaceOpen !== undefined) {
+                if (player.interfaceOpen === player.inventory) {
+                    player.interfaceOpen = undefined
+                }
+
+
+            } else {
+                player.interfaceOpen = player.inventory
+
+            }
+        } if (e.key === "1") {
+            if (player.interfaceOpen === undefined) {
+                player.itemSelected = 0
+            } else if (player.interfaceOpen.name === "inventory") {
+                player.interfaceOpen.tab = 0
+            }
+        } if (e.key === "2") {
+            if (player.interfaceOpen === undefined) {
+                player.itemSelected = 1
+            } else if (player.interfaceOpen.name === "inventory") {
+                player.interfaceOpen.tab = 1
+            }
+        } if (e.key === "3") {
+            if (player.interfaceOpen === undefined) {
+                player.itemSelected = 2
+            } else if (player.interfaceOpen.name === "inventory") {
+                player.interfaceOpen.tab = 2
+            }
+        } if (e.key === "4") {
+            if (player.interfaceOpen === undefined) {
+                player.itemSelected = 3
+            } else if (player.interfaceOpen.name === "inventory") {
+                player.interfaceOpen.tab = 3
+            }
+        } if (e.key === "5") {
+            if (player.interfaceOpen === undefined) {
+                player.itemSelected = 4
+            } else if (player.interfaceOpen.name === "inventory") {
+                player.interfaceOpen.tab = 4
+
             }
         }
-        
-        spaceLock = true
-
-
-
-
-    } if (e.key === "Escape") {
-        if (player.interfaceOpen !== undefined) {
-            if (player.interfaceOpen === player.inventory) {
-                player.interfaceOpen = undefined
+        if (e.key === "e") {
+            typing = true
+        }
+    } else {
+        if (e.key === "Enter") {
+            typing = false
+            if(typingText !== "") {
+                socket.emit("requestUniversalNotification", {time: 3, size: 32, colour: "#000000", text: player.name + ": " + typingText})
             }
-
+            typingText = ""
+        } else if(e.key === "Backspace") {
+            typingText = typingText.slice(0, typingText.length - 1)
+        } else if(e.key === "Escape" || e.key === "Control" || e.key === "Shift") {
 
         } else {
-            player.interfaceOpen = player.inventory
-
+            typingText += e.key
         }
-    } if (e.key === "1") {
-        if (player.interfaceOpen === undefined) {
-            player.itemSelected = 0
-        } else if (player.interfaceOpen.name === "inventory") {
-            player.interfaceOpen.tab = 0
-        }
-    } if (e.key === "2") {
-        if (player.interfaceOpen === undefined) {
-            player.itemSelected = 1
-        } else if (player.interfaceOpen.name === "inventory") {
-            player.interfaceOpen.tab = 1
-        }
-    } if (e.key === "3") {
-        if (player.interfaceOpen === undefined) {
-            player.itemSelected = 2
-        } else if (player.interfaceOpen.name === "inventory") {
-            player.interfaceOpen.tab = 2
-        }
-    } if (e.key === "4") {
-        if (player.interfaceOpen === undefined) {
-            player.itemSelected = 3
-        } else if (player.interfaceOpen.name === "inventory") {
-            player.interfaceOpen.tab = 3
-        }
-    } if (e.key === "5") {
-        if (player.interfaceOpen === undefined) {
-            player.itemSelected = 4
-        } else if (player.interfaceOpen.name === "inventory") {
-            player.interfaceOpen.tab = 4
-
-        }
-    }
-    if (e.key === "e") {
-        //inventoryAdd(new Item("Wood", "Resource", 3))
     }
 }
 function logUp(e) {
-    if (e.key === "w") {
-        player.vy = 0
-    } if (e.key === "a") {
-        player.vx = 0
-    } if (e.key === "s") {
-        player.vy = 0
-    } if (e.key === "d") {
-        player.vx = 0
-    } if (e.key === " ") {
-        spaceLock = false
+    if(typing === false) {
+        if (e.key === "w") {
+            player.vy = 0
+        } if (e.key === "a") {
+            player.vx = 0
+        } if (e.key === "s") {
+            player.vy = 0
+        } if (e.key === "d") {
+            player.vx = 0
+        } if (e.key === " ") {
+            spaceLock = false
+        }
     }
 }
 
@@ -176,6 +203,24 @@ function getMouseClick(event) {
         }
     }
     */
+    if(player.interfaceOpen === player.inventory) {
+        if(player.interfaceOpen.tab === 2) {
+            for(p in players) {
+                let xOffset = (window.innerWidth - 64 * 13) / 2 - 0
+                let yOffset = (window.innerHeight - 64 * 7) / 2 - 0
+                if(overlapping(clickX, clickY, 1, 1, xOffset+11*64+12, yOffset+p*64+12, 2*64-24, 1*64-24)) {
+                    for(let l in parties) {
+                        for(let x in parties[l]) {
+                            if(players[p].id === parties[l][x].id) {
+
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
 }
 
 document.addEventListener('mousemove', function (e) {

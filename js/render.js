@@ -42,8 +42,20 @@ function render() {
             }
         }
     }
-    ctx.fillStyle = "#999999"
-    playerRender("down")
+    
+    playerRender("down", player)
+    for(p in players) {
+        
+        let player_ = players[p]
+        
+        ctx.font = "24px Arial"
+        ctx.textAlign = "center"
+        ctx.fillStyle = "#000000"
+        ctx.fillText(player_.name, player_.x+32 + cx, player_.y - 80 + cy)
+        ctx.textAlign = "left"
+
+        playerRender("down", player_)
+    }
     for (let x in player.map.grid) {
         for (let y in player.map.grid[x]) {
             let tile = player.map.grid[x][y]
@@ -108,6 +120,14 @@ function render() {
         ctx.font = "24px Arial";
         ctx.fillText(n.text, 24, window.innerHeight - 72 - no*32)
     }
+    if(typingText !== undefined) {
+        ctx.font = "20px Arial"
+        ctx.textAlign = "center"
+        ctx.fillStyle = "#000000"
+        ctx.fillText(typingText, player.x+32 + cx, player.y - 60 + cy)
+        ctx.textAlign = "left"
+    }
+
     renderHotbar()
     if (player.interfaceOpen !== undefined) {
         player.interfaceOpen.render()

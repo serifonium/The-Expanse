@@ -13,6 +13,7 @@ class Player {
         this.rotation = 0
         this.canMove = true
         this.interfaceOpen
+        this.place = "Starting Room"
 
         this.baseSpeed = 5
         this.baseStrength = 0
@@ -103,7 +104,7 @@ class Player {
             ctx.fillStyle = "#6b6b6b"
             ctx.fillRect(xOffset - 8, yOffset - 8, 64 * 13 + 16, 64 * 7 + 16)
             ctx.fillStyle = "#dddddd"
-            ctx.fillRect(xOffset, yOffset, 64 * 13, 64 * 7)
+            ctx.fillRect(xOffset, yOffset+1, 64 * 13, 64 * 7)
             if(player.inventory.tab !== undefined) {
                 if(player.inventory.tab === 0) {
                     for (let x = 0; x < 13; x++) {
@@ -113,7 +114,14 @@ class Player {
                             } else {
                                 ctx.drawImage(imgCache.slot1, xOffset + x * 64, yOffset + y * 64 - 1)
                             }
-
+                            if(player.inventory.items[y*13+x] !== null) {
+                                ctx.drawImage(player.inventory.items[y*13+x].texture, xOffset + x * 64, yOffset + y * 64 - 1)
+                                if(player.inventory.items[y*13+x].amount > 1) {
+                                    ctx.fillStyle = "#000000"
+                                    ctx.font = "20px Arial";
+                                    ctx.fillText(player.inventory.items[y*13+x].amount, xOffset + x * 64 + 40, yOffset + y * 64 + 56)
+                                }
+                            }
                         }
                     }
                     
@@ -133,6 +141,18 @@ class Player {
                         ctx.fillText(quest.name, xOffset+0*64+16, yOffset+(q*2)*64+40)
                         ctx.font = "12px Arial";
                         ctx.fillText(quest.desc, xOffset+0*64+16, yOffset+(q*2+1)*64+0)
+                    }
+                } else if(player.inventory.tab === 2) {
+                    for(p in players) {
+                        let player_ = players[p]
+                        drawBorder(xOffset+6*64, yOffset+p*64, 7*64, 1*64)
+                        ctx.fillStyle = "#000000"
+                        ctx.font = "24px Arial";
+                        ctx.fillText(player_.name, xOffset+6*64+16, yOffset+p*64+40)
+                        drawBorder(xOffset+11*64+12, yOffset+p*64+12, 2*64-24, 1*64-24)
+                        ctx.font = "12px Arial";
+                        ctx.fillStyle = "#000000"
+                        ctx.fillText("Invite to Party", xOffset+11*64+16, yOffset+p*64+38)
                     }
                 }
             }

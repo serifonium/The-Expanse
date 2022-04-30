@@ -1,4 +1,6 @@
+let i = 0;
 function update() {
+    i ++;
     /*
     
     for (let x in player.map.grid) {
@@ -181,5 +183,20 @@ function update() {
             cy = -(player.y - window.innerHeight / 2)
         }
     }
+    socket.emit("playerStats", {
+        x: player.x,
+        y: player.y
+    })
+    if (i % 1200 === 0){
+        
+        //socket.emit("requestMap")
+        for(let m of maps) {
+            if(player.place === m.name) {
+                player.map = m
+            }
+        }
+        
+    }
+    
     render()
 }

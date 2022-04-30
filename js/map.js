@@ -68,7 +68,7 @@ class Tile {
     toSerializable() {
         return {
             type: this.type,
-            //decor: this.decor,
+            decor: this.decor,
             pos: this.pos,
             tags: this.tags,
 
