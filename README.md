@@ -19,27 +19,18 @@ space - interact with tile
 
 12345 - select hotbar slots
 
+e - chat
 
 
 
-## Recent Changelog vA.0.0.8:
 
-added background ost
+## Recent Changelog vA.0.1:
 
-added basic localStorage saving
+added rudimentary multiplayer hosting
+(WIP)
 
-- 3 save files
-- saves player inventory
 
-added non-functional deleteSave button
 
-### Previous Changelog vA.0.0.7:
-
-added startup screen
-
-added abilty to move around items in inventory
-
-changed amount of reosurces dropped from trees & rocks
 
 
 
