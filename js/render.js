@@ -2,13 +2,14 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 ctx.textAlign = "center";
 
-
+let r = 0
 
 function render() {
     document.getElementById("myCanvas").width = window.innerWidth
     document.getElementById("myCanvas").height = window.innerHeight
 
     ctx.fillStyle = "#333333"
+    r++;
 
     for (let x in player.map.grid) {
         for (let y in player.map.grid[x]) {
@@ -39,6 +40,34 @@ function render() {
                 }
             } if (tile.type === "water1") {
                 ctx.drawImage(imgCache.water1, xOffset, yOffset)
+            } if (tile.type === "dugSnow") {
+                ctx.drawImage(imgCache.dugSnow, xOffset, yOffset)
+            }
+        }
+    }
+    for (let x in player.map.grid) {
+        for (let y in player.map.grid[x]) {
+            let tile = player.map.grid[x][y]
+            let xOffset = x * 64 + cx
+            let yOffset = y * 64 + cy
+            if (tile.decor === "rock") {
+                if (tile.cooldown !== undefined) {
+                    if (tile.cooldown === 4) {
+                        ctx.drawImage(imgCache.rock, xOffset - 3, yOffset)
+                    } else if (tile.cooldown === 3) {
+                        ctx.drawImage(imgCache.rock, xOffset - 0, yOffset)
+                    } else if (tile.cooldown === 2) {
+                        ctx.drawImage(imgCache.rock, xOffset + 3, yOffset)
+                    } else if (tile.cooldown === 1) {
+                        ctx.drawImage(imgCache.rock, xOffset - 0, yOffset)
+                    } else {
+                        ctx.drawImage(imgCache.rock, xOffset, yOffset)
+                    }
+                } else {
+                    ctx.drawImage(imgCache.rock, xOffset, yOffset)
+                }
+            } else if (tile.decor === "tradersTent") {
+                ctx.drawImage(imgCache.tent, xOffset, yOffset)
             }
         }
     }
@@ -77,25 +106,10 @@ function render() {
                 } else {
                     ctx.drawImage(imgCache.borealTree1, xOffset - 32, yOffset - 288)
                 }
-            } else if (tile.decor === "rock") {
-                if (tile.cooldown !== undefined) {
-                    if (tile.cooldown === 4) {
-                        ctx.drawImage(imgCache.rock, xOffset - 3, yOffset)
-                    } else if (tile.cooldown === 3) {
-                        ctx.drawImage(imgCache.rock, xOffset - 0, yOffset)
-                    } else if (tile.cooldown === 2) {
-                        ctx.drawImage(imgCache.rock, xOffset + 3, yOffset)
-                    } else if (tile.cooldown === 1) {
-                        ctx.drawImage(imgCache.rock, xOffset - 0, yOffset)
-                    } else {
-                        ctx.drawImage(imgCache.rock, xOffset, yOffset)
-                    }
-                } else {
-                    ctx.drawImage(imgCache.rock, xOffset, yOffset)
+                if (r % 120 === 0) {
+                    console.log(tile.cooldown)
                 }
-            } else if (tile.decor === "tradersTent") {
-                ctx.drawImage(imgCache.tent, xOffset, yOffset)
-            }
+            } 
         }
     }
     if (player.personalOptions.highlightInteract) {

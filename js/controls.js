@@ -34,11 +34,17 @@ function logKey(e) {
                 if (player.interactTile.decor === "borealTree1" && player.interactTile.cooldown === 0) {
                     
                     for(let m in maps) {
-                        if(player.place === maps[m].name) {
+                        if(player.place === maps[m].name) {/*
                             console.log("yes")
                             socket.emit("updateMap", "hitTree", 
                                 {x: player.interactTile.pos.x, y: player.interactTile.pos.y, map: Number(m)}
                             )
+                            */
+                            socket.emit("updateTiles", player.interactTile.pos.x, player.interactTile.pos.y, m, {hits: player.interactTile.hits - 1, cooldown: 4})
+                            if(player.interactTile.hits < 1) {
+                                socket.emit("updateTiles", player.interactTile.pos.x, player.interactTile.pos.y, m, {decor: "", collisionDetection: false} )
+                                inventoryAdd(new Item("Wood", "Resource", Math.floor(Math.random() * 5 + 5)))
+                            }
                         }
                     }
 
@@ -54,6 +60,28 @@ function logKey(e) {
                         }
                     }
 
+                } else if(player.interactTile.decor === "" && player.interactTile.type === "dugSnow") {
+                    for(let m in maps) {
+                        if(player.place === maps[m].name) {
+                            socket.emit("updateTiles", player.interactTile.pos.x, player.interactTile.pos.y, m, {type: "snow"})
+
+                        }
+                    }
+                }
+            } else if (player.inventory.items[player.itemSelected].name === "Fractured Shovel") {
+                if (player.interactTile.decor === "") {
+                    if(player.interactTile.type === "snow") {
+
+                        for(let m in maps) {
+                            if(player.place === maps[m].name) {
+                                socket.emit("updateTiles", player.interactTile.pos.x, player.interactTile.pos.y, m, {type: "dugSnow"})
+
+                            }
+                        }
+    
+                    }
+                    
+                    
                 }
             }
 

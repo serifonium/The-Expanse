@@ -12,6 +12,7 @@ imgCache.bridge = new Image(); imgCache.bridge.src = "./images/bridge.png";
 imgCache.coffeeShotEffect = new Image(); imgCache.coffeeShotEffect.src = "./images/coffeeShotEffect.png";
 imgCache.coin = new Image(); imgCache.coin.src = "./images/coin.png";
 imgCache.deleteSave = new Image(); imgCache.deleteSave.src = "./images/deleteSave.png";
+imgCache.dugSnow = new Image(); imgCache.dugSnow.src = "./images/dugSnow.png";
 imgCache.emptyTickSlot = new Image(); imgCache.emptyTickSlot.src = "./images/emptyTickSlot.png";
 imgCache.floor1 = new Image(); imgCache.floor1.src = "./images/floor1.png";
 imgCache.floor2 = new Image(); imgCache.floor2.src = "./images/floor2.png";
@@ -48,6 +49,7 @@ imgCache.basicFishingPole = new Image(); imgCache.basicFishingPole.src = "./imag
 imgCache.fracturedAxe = new Image(); imgCache.fracturedAxe.src = "./images/items/fracturedAxe.png";
 imgCache.fracturedPickaxe = new Image(); imgCache.fracturedPickaxe.src = "./images/items/fracturedPickaxe.png";
 imgCache.fracturedSword = new Image(); imgCache.fracturedSword.src = "./images/items/fracturedSword.png";
+imgCache.fracturedShovel = new Image(); imgCache.fracturedShovel.src = "./images/items/fracturedShovel.png";
 imgCache.frostMinnow = new Image(); imgCache.frostMinnow.src = "./images/items/frostMinnow.png";
 imgCache.ironOre = new Image(); imgCache.ironOre.src = "./images/items/ironOre.png";
 imgCache.nuclearFuel = new Image(); imgCache.nuclearFuel.src = "./images/items/nuclearFuel.png";

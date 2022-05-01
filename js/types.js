@@ -435,6 +435,8 @@ class Item {
             this.texture = imgCache.fracturedPickaxe
         } else if (name === "Fractured Axe") {
             this.texture = imgCache.fracturedAxe
+        } else if (name === "Fractured Shovel") {
+            this.texture = imgCache.fracturedShovel
         } else if (name === "Basic Fishing Pole") {
             this.texture = imgCache.basicFishingPole
         } else {
