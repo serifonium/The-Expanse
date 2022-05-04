@@ -3,7 +3,7 @@ const serverURL = "https://expanse.venter.center";
 
 const socket = io(serverURL, {
     withCredentials: false,
-    
+    origin: "*"
 })
 
 

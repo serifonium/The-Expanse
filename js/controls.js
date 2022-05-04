@@ -39,6 +39,7 @@ function logKey(e) {
                             socket.emit("updateMap", "hitTree", 
                                 {x: player.interactTile.pos.x, y: player.interactTile.pos.y, map: Number(m)}
                             )
+                            
                             */
                             socket.emit("updateTiles", player.interactTile.pos.x, player.interactTile.pos.y, m, {hits: player.interactTile.hits - 1, cooldown: 4})
                             if(player.interactTile.hits < 1) {
